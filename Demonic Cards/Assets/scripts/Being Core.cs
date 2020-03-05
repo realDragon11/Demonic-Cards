@@ -43,6 +43,61 @@ public class ResistMap
         }
         return 0f;
     }
+
+    public List<DamageType> getKeys(){
+        List<DamageType> keys = new List<DamageType>();
+        foreach (DamageType d in resists.Keys){
+            keys.Add(d);
+        }
+        return keys;
+    }
+
+    public static DamageMultMap consolidate(List<ResistMap> list){
+        ResistMap r = new ResistMap();
+        foreach (var rMap in list)
+        {
+            foreach (var key in rMap.getKeys())
+            {
+                
+            }
+        }
+
+        return r;
+    }
+}
+///used for calculating end damage, basically the sum of all the resistmaps
+public class DamageMultMap
+{
+    private Dictionary<DamageType,float> resists = new Dictionary<DamageType,float>();
+
+    public void addResist(DamageType dt, float resistValue){
+        float rVal = 1;
+        if (resists.ContainsKey(dt)){
+            resists.TryGetValue(dt,out rVal)
+        }
+        rVal+=resistValue;
+        if (rVal <0){
+            rVal = 0;
+        }
+        resists.Add(dt,rVal);
+    }
+
+     public void replaceResist(DamageType dt, float resistValue){
+        if (resists.ContainsKey(dt)){
+           resists.Remove(dt); 
+        }
+            resists.Add(dt,resistValue);
+        
+    }
+
+    public float getResistMult(DamageType dt){
+        if (resists.ContainsKey(dt)){
+            float toOut;
+            resists.TryGetValue(dt,out toOut);
+            return toOut;
+        }
+        return 1f;
+    }
 }
 
 [System.Serializable]
