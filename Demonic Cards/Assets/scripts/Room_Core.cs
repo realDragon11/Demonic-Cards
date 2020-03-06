@@ -44,11 +44,14 @@ public class Tile{
     public Floor floor;
     public Surface surf = Surface.NONE;
     private int x, y;
+    public tile_clicker linked;
 
     public Tile(int x2, int y2){
         x = x2;
         y = y2;
         //transform.position = new Vector3(x,y,-1);
+        linked =  ((GameObject)GameObject.Instantiate(Resources.Load("ClickableTile"))).GetComponent<tile_clicker>();
+        linked.gameObject.transform.position = new Vector3(x,y,-1);
     }
 
     public int getX(){

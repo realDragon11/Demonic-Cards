@@ -33,6 +33,12 @@ public class Handler : MonoBehaviour
             b.advanceTime(t);
         }
     }
+
+    public static void clickTile(Tile t){
+        if (Being.turnWho.getSide() == Side.PLAYER){
+            Being.turnWho.attemptToUseCard(Being.turnWho.curCard,t);
+        }
+    }
 }
 
 public class BeingComparator : Comparer<Being>{

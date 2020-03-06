@@ -25,6 +25,7 @@ public class Being : canCollide
     private float timeToAct = 100f;
     private int actionsLeft = 0;
     public Tile curTile;
+    public Card curCard;
 
     public Side getSide(){
         return side;
