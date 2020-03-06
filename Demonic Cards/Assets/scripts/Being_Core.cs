@@ -66,6 +66,7 @@ public class Being : canCollide
         {
             hitpoints-=d.dam*this.damMultMap.getResistMult(d.dt);
         }
+        Debug.Log("damaged: " + hitpoints);
         return isDead();
     }
 
@@ -120,7 +121,7 @@ public class Being : canCollide
         timeToAct = 100f;
         actionsLeft = speed;
        if (this.getSide() != Side.PLAYER){
-           //this.aiAct();
+           this.aiAct();
        }
     }
 
