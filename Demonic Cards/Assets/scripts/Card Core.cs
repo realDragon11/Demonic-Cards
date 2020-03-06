@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,5 +36,13 @@ public class TileOffset{
     public TileOffset(int x,int y){
         xOff = x;
         yOff = y;
+    }
+
+    public TileOffset flipIf(bool v)
+    {
+        if (v){
+            return new TileOffset(xOff*-1,yOff);
+        }
+        return this;
     }
 }

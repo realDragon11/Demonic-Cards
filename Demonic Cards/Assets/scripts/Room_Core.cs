@@ -49,7 +49,8 @@ public class Room
         if (target.occupant != null){
             throw new GenericRuntimeException("Tile already occupied!");
         }
-        user.getTile().occupant = null;
+        if (user.getTile() != null){
+        user.getTile().occupant = null;}
        target.occupant = user;
        user.setCurTile(target);
     }

@@ -11,7 +11,7 @@ public class AICore
         {
             foreach (TileOffset t in c.getTileSet().tos)
             {
-                list.Add(new AIAction(b,c,Handler.h.r.getTileRelative(b.getTile(),t)));
+                list.Add(new AIAction(b,c,Handler.h.r.getTileRelative(b.getTile(),t.flipIf(b.getSide() != Side.PLAYER))));
             }         
         }
         return list;
