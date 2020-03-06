@@ -30,6 +30,7 @@ public class Being : canCollide
 
     public Being(Side s){
         side = s;
+        Debug.Log("Making a being.");
         GameObject.Instantiate(Handler.h.athing).TryGetComponent<Thing>(out linkedThing);
     }
 
@@ -111,6 +112,7 @@ public class Being : canCollide
     }
 
     public void setTurn(){
+         Debug.Log("Setting turn.");
         Handler.advanceTime(this.timeTilAction());
         turnWho = this;
         timeToAct = 100f;
@@ -121,6 +123,7 @@ public class Being : canCollide
     }
 
     public void aiAct(){
+        Debug.Log("A enemy skips their turn!");
         Handler.h.nextTurn();
     }
 

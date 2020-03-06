@@ -26,6 +26,8 @@ public class Handler : MonoBehaviour
         h = this;
         r = new Room(xSize,ySize);
         beingList.Add(BeingFactory.generateGenericBeing(Side.PLAYER,r.getTile(4,4)));
+        beingList.Add(BeingFactory.generateGenericBeing(Side.DEMONS,r.getTile(5,4)));
+        beingList[0].setAgilityMult(1.2f);
     }
 
     void Start(){//use awake to put things into the beinglist

@@ -7,7 +7,7 @@ public class BeingFactory
 
     public static Being generateGenericBeing(Side s, Tile t){
         Being b = new Being(s);
-        b.setCurTile(t);
+        Room.moveTo(b,t);
         return b;
     }
 }
