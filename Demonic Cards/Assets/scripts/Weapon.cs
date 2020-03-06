@@ -6,7 +6,7 @@ public class Weapon : Item
 {
 
     public List<Card> cards = new List<Card>();
-    public Weapon(Sprite s,string iname2, string desc2, ItemSubType ist, ResistMap r, Card c1, Card c2, Card c3, Card c4, Card c5){
+    public Weapon(Sprite s,string iname2, string desc2, ItemSubType ist, Card c1, Card c2, Card c3, Card c4, Card c5){
         sprite = s;
         this.iname = iname2;
         this.desc = desc2;

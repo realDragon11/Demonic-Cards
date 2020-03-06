@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weapon_cards : MonoBehaviour
+public class WeaponFactory
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public static Weapon combat_knife = null;
+
+    public static Weapon getCombatKnife(){
+        if (combat_knife == null){
+            combat_knife = new Weapon(null,"Combat Knife","A balanced starting weapon that deals slashing and piercing.",ItemSubType.MELEE_WEAPON,new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeStab());
+        }
+        return combat_knife;
     }
 
-    // Update is called once per frame
-    void Update()
+}
+
+public class CombatKnifeStab : Card
+{
+    public override TileSet getTileSet()
     {
-        
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(10f,DamageType.PIERCE));
+        target.occupant.damage(a);
     }
 }

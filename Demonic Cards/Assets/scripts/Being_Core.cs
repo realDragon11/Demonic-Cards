@@ -111,7 +111,7 @@ public class Being : MonoBehaviour
     }
 
     public void aiAct(){
-        
+
     }
 }
 public enum DamageType{
@@ -233,6 +233,11 @@ public class Attack{
 public class Damage{
     public float dam;
     public DamageType dt;
+
+    public Damage(float damage, DamageType damageType){
+        dam = damage;
+        dt = damageType;
+    }
 }
 
 [System.Serializable]

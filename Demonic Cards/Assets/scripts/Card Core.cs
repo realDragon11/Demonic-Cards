@@ -20,4 +20,8 @@ public List<TileOffset> tos = new List<TileOffset>();
 
 public class TileOffset{
     public int xOff, yOff;
+    public TileOffset(int x,int y){
+        xOff = x;
+        yOff = y;
+    }
 }
