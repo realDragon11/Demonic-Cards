@@ -9,12 +9,27 @@ The Core class containing beings and other core things
 **/
 public class Being : MonoBehaviour
 {
+    public static Being turnWho;
     private float hitpoints;
+    private Side side;
     public ResistMap baseRMap = new ResistMap();
     public List<Item> inv = new List<Item>();
     private Armor head_a,arm_a,chest_a,leg_a,feet_a;
     public DamageMultMap damMultMap;
     public List<Buff> buffs = new List<Buff>();
+    //how many cards it can play per turn
+    private int speed = 2;
+    private float agilityMult = 1f;
+    private float timeToAct = 100f;
+    private int actionsLeft = 0;
+
+    public Side getSide(){
+        return side;
+    }
+
+    public void setSide(Side s){
+        side = s;
+    }
 
     public void setHp(float h){
         hitpoints = h;
@@ -33,6 +48,7 @@ public class Being : MonoBehaviour
     }
 
     public bool damage(Attack a){
+        refreshDamageMultMap();//remove if this causes lag
         foreach (Damage d in a.dams)
         {
             hitpoints-=d.dam*this.damMultMap.getResistMult(d.dt);
@@ -54,9 +70,44 @@ public class Being : MonoBehaviour
         list.Add(baseRMap);
         damMultMap = ResistMap.consolidate(list);
     }
+
+    public void setSpeed(int spd){
+        speed = spd;
+    }
+
+    public void setAgilityMult(float f){
+        agilityMult = f;
+    }
+    public float getAgilityMult(){
+        return agilityMult;
+    }
+    public void advanceTime(float t){
+        List<Buff> removeList = new List<Buff>();
+        foreach (Buff b in buffs)
+        { 
+            if (b.advanceTime(t)){
+                removeList.Add(b);
+            }
+        }
+        foreach (Buff b in removeList)
+        {
+            buffs.Remove(b);
+        }
+        timeToAct-=agilityMult*t;
+    }
+
+    public void setTurn(){
+        turnWho = this;
+        timeToAct = 100f;
+        actionsLeft = speed;
+    }
 }
 public enum DamageType{
     SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
+}
+
+public enum Side{
+    PLAYER, DEMONS
 }
 //https://www.dotnetperls.com/map //I know how to use maps in java, I just needed to lookup how dictionaries fill that role in c# - Brian M.
 public class ResistMap
