@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /**
@@ -7,7 +8,7 @@ Brian M.
 3/5/2020
 The Core class containing beings and other core things
 **/
-public class Being : MonoBehaviour
+public class Being : MonoBehaviour, canCollide
 {
     public static Being turnWho;
     private float hitpoints;
@@ -22,6 +23,7 @@ public class Being : MonoBehaviour
     private float agilityMult = 1f;
     private float timeToAct = 100f;
     private int actionsLeft = 0;
+    public Tile curTile;
 
     public Side getSide(){
         return side;
@@ -112,6 +114,16 @@ public class Being : MonoBehaviour
 
     public void aiAct(){
 
+    }
+
+    public Tile getTile()
+    {
+        return curTile;
+    }
+
+    public CollidableType getSubType()
+    {
+        return CollidableType.BEING;
     }
 }
 public enum DamageType{
@@ -249,4 +261,58 @@ public class GenericRuntimeException : System.Exception
     protected GenericRuntimeException(
         System.Runtime.Serialization.SerializationInfo info,
         System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+}
+
+public class StandardMoveCard : Card
+{
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(-1,0));
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(0,-1));
+        t.tos.Add(new TileOffset(0,1));
+        return t;
+    }
+
+    public override void use(Being user, Tile target)
+    {
+        (Core.clearRay(user.getTile(),target,this.getTileSet() ,true))
+    }
+}
+
+public interface canCollide
+{
+    CollidableType getSubType();
+     Tile getTile();
+}
+
+public enum CollidableType{
+    BEING, WALL
+}
+
+public static class Core{
+    public static bool clearRay(Tile start, Tile end, TileSet mask, bool lastSpaceFree){
+        var cols = Physics2D.LinecastAll(new Vector2(start.getX(),start.getY()),new Vector2(end.getX(),end.getY()));
+        List<Collider2D> colList = new List<Collider2D>();
+        foreach (var item in cols)
+        {
+            if (Vector3.Distance(item.collider.gameObject.transform.position,new Vector3(start.getX(),start.getY())) < .3f){
+                //we don't care!
+            }else{
+                canCollide b = null;
+                if (item.collider.gameObject.TryGetComponent<canCollide>(out b)){
+                    switch (b.getSubType()){
+                        case CollidableType.BEING:
+                        Being a = (Being)b;
+                        Side s = a.getSide();
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
 }
