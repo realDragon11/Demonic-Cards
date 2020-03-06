@@ -53,13 +53,21 @@ public class ResistMap
     }
 
     public static DamageMultMap consolidate(List<ResistMap> list){
-        ResistMap r = new ResistMap();
-        foreach (var rMap in list)
+        DamageMultMap r = new DamageMultMap();
+        List<DamageType> typeList = new List<DamageType>();
+        foreach (ResistMap rMap in list)
         {
-            foreach (var key in rMap.getKeys())
+            foreach (DamageType key in rMap.getKeys())
             {
-                
+                r.addResist(key,rMap.getResist(key));
+                if (!typeList.Contains(key)){
+                    typeList.Add(key);
+                }
             }
+        }
+
+        foreach (DamageType dt in typeList){
+            r.complete(dt);
         }
 
         return r;
@@ -73,10 +81,19 @@ public class DamageMultMap
     public void addResist(DamageType dt, float resistValue){
         float rVal = 1;
         if (resists.ContainsKey(dt)){
-            resists.TryGetValue(dt,out rVal)
+            resists.TryGetValue(dt,out rVal);
         }
         rVal+=resistValue;
-        if (rVal <0){
+        resists.Add(dt,rVal);
+    }
+
+    public void complete(DamageType dt){
+        float rVal = 1;
+         if (resists.ContainsKey(dt)){
+            resists.TryGetValue(dt,out rVal);
+            resists.Remove(dt); 
+        }
+        if (rVal < 0){
             rVal = 0;
         }
         resists.Add(dt,rVal);
