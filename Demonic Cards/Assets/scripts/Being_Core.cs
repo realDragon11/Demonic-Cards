@@ -125,6 +125,32 @@ public class Being : MonoBehaviour, canCollide
     {
         return CollidableType.BEING;
     }
+
+    public bool attemptToUseCard(Card c, Tile t){
+        if (actionsLeft <= 0){
+            return false;
+        }
+        
+        int mult = 1;
+        if (this.side.Equals(Side.DEMONS)){
+            mult = -1;
+        }
+        bool pass = false;
+        foreach (TileOffset toff in c.getTileSet().tos)
+        {
+            if (toff.getY)
+        }
+        if (!pass){
+            return false;
+        }
+
+        if (!Core.clearRay(this,this.getTile(),t,c.getTileSet(),false)){
+            return false;
+        }
+        c.use(this,t);
+        actionsLeft--;
+        return true;
+    }
 }
 public enum DamageType{
     SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
