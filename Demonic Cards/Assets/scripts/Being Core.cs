@@ -10,7 +10,8 @@ The Core class containing beings and other core things
 public class Being : MonoBehaviour
 {
     private float hp;
-    public ResistMap rMap;
+    public ResistMap baseRMap = new ResistMap();
+    public List<Item> inv = new List<Item>();
 }
 public enum DamageType{
     SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
