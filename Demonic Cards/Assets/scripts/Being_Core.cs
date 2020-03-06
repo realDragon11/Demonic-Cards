@@ -278,7 +278,9 @@ public class StandardMoveCard : Card
 
     public override void use(Being user, Tile target)
     {
-        (Core.clearRay(user.getTile(),target,this.getTileSet() ,true))
+       if (Core.clearRay(user,user.getTile(),target,this.getTileSet() ,true)){
+           Room.moveTo(user,target);
+       }
     }
 }
 
@@ -293,7 +295,7 @@ public enum CollidableType{
 }
 
 public static class Core{
-    public static bool clearRay(Tile start, Tile end, TileSet mask, bool lastSpaceFree){
+    public static bool clearRay(Being user, Tile start, Tile end, TileSet mask, bool lastSpaceFree){
         var cols = Physics2D.LinecastAll(new Vector2(start.getX(),start.getY()),new Vector2(end.getX(),end.getY()));
         List<Collider2D> colList = new List<Collider2D>();
         foreach (var item in cols)
@@ -301,18 +303,33 @@ public static class Core{
             if (Vector3.Distance(item.collider.gameObject.transform.position,new Vector3(start.getX(),start.getY())) < .3f){
                 //we don't care!
             }else{
+                if (!lastSpaceFree && Vector3.Distance(item.collider.gameObject.transform.position,new Vector3(end.getX(),end.getY())) < .3f){
+                    continue;
+                }
                 canCollide b = null;
                 if (item.collider.gameObject.TryGetComponent<canCollide>(out b)){
                     switch (b.getSubType()){
                         case CollidableType.BEING:
                         Being a = (Being)b;
                         Side s = a.getSide();
-
+                        if (user.getSide() == s && mask.blockedByAllies){
+                            colList.Add(item.collider);
+                        }else{
+                            if (mask.blockedByEnemies){
+                                colList.Add(item.collider);
+                            }
+                        }
+                        break;
+                        case CollidableType.WALL:
+                            if (mask.blockedByWalls){
+                                colList.Add(item.collider);
+                            }
                         break;
                     }
                 }
             }
         }
+        return !(colList.Count > 0);
     }
 
 }

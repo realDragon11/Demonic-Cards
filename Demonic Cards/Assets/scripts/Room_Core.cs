@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,12 @@ public class Room : MonoBehaviour
         {
             return null;
         }
+    }
+
+    internal static void moveTo(Being user, Tile target)
+    {
+       target.occupant = user;
+       user.curTile = target;
     }
 }
 
