@@ -81,6 +81,10 @@ public class Being : MonoBehaviour
     public float getAgilityMult(){
         return agilityMult;
     }
+
+    public float timeTilAction(){
+        return timeToAct/agilityMult;
+    }
     public void advanceTime(float t){
         List<Buff> removeList = new List<Buff>();
         foreach (Buff b in buffs)
