@@ -10,7 +10,12 @@ public abstract class Card
     public abstract TileSet getTileSet();
     public abstract void use(Being user, Tile target);
     public Sprite image;
+    protected string cName;
+    public string getName(){
+        return cName;
+    }
 }
+
 
 public class TileSet{
 

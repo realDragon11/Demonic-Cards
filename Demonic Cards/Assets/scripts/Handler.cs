@@ -9,6 +9,7 @@ public class Handler : MonoBehaviour
     public static Handler h;
     public GameObject ct;
     public GameObject athing;
+    public TMP_Dropdown cardSelector;
 
     public int xSize, ySize;
     public Room r;
@@ -62,6 +63,28 @@ public class Handler : MonoBehaviour
             nextTurn();
         }
     }
+
+    public void displayCards(List<Card> cars){
+        cardSelector.ClearOptions();
+        List<TMP_Dropdown.OptionData> list = new List<TMP_Dropdown.OptionData>();
+        foreach (Card c in cars)
+        {
+            TMP_Dropdown.OptionData data =  new TMP_Dropdown.OptionData();
+            data.image = c.image;
+            data.text = c.getName();
+            list.Add(data);
+        }
+        cardSelector.AddOptions(list);
+    }
+
+    public void selectCard(){
+        Being.turnWho.selectCard(cardSelector.value);
+    }
+
+    /** My handy custom random function I use in all my java projects -Brian M.**/
+    public static int randRange(int i, int j) {
+		return (int)(Random.Range(0,1)*(j+1-i))+i;
+	}
 }
 
 public class BeingComparator : Comparer<Being>{

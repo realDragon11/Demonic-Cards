@@ -17,5 +17,9 @@ public class Weapon : Item
         cards.Add(c3);
         cards.Add(c4);
         cards.Add(c5);
-     }   
+     }
+
+     public Card draw(){
+         return cards[Handler.randRange(0,cards.Count-1)];
+     }
 }

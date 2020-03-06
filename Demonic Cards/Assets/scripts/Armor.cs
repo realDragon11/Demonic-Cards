@@ -15,5 +15,9 @@ public class Armor : Item
      resist = r;
      cards.Add(c1);
      cards.Add(c2);
- }   
+ }
+
+  public Card draw(){
+         return cards[Handler.randRange(0,cards.Count-1)];
+     } 
 }

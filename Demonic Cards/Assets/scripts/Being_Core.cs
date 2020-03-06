@@ -28,6 +28,8 @@ public class Being : canCollide
     public Card curCard = new CombatKnifeStab();
     public Thing linkedThing;
 
+    public List<Card> cards = new List<Card>();
+
     public Being(Side s){
         side = s;
         Debug.Log("Making a being.");
@@ -83,6 +85,16 @@ public class Being : canCollide
         list.Add(feet_a.resist);
         list.Add(baseRMap);
         damMultMap = ResistMap.consolidate(list);
+    }
+
+    public void selectCard(int value)
+    {
+        this.curCard = cards[value];
+    }
+
+    public void draw(){
+        cards.Clear();
+        
     }
 
     public void setSpeed(int spd){
