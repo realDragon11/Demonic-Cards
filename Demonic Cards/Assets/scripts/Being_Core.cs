@@ -138,7 +138,12 @@ public class Being : MonoBehaviour, canCollide
         bool pass = false;
         foreach (TileOffset toff in c.getTileSet().tos)
         {
-            if (toff.getY)
+            if (this.getTile().getY()+toff.yOff == t.getY()){
+                if (this.getTile().getX()+(toff.xOff*mult) == t.getX()){
+                    pass = true;
+                    break;
+                }
+            }
         }
         if (!pass){
             return false;
