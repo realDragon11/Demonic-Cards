@@ -21,6 +21,18 @@ public class Room
         }
     }
 
+    public Tile getTileRelative(Tile tile, TileOffset t)
+    {
+       try
+        {
+            return tiles[tile.getX()+t.xOff][tile.getY()+t.yOff];
+        }
+        catch (System.Exception)
+        {
+            return null;
+        }
+    }
+
     public Tile getTile(int x, int y){
         try
         {

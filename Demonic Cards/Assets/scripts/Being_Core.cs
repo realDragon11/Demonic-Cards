@@ -369,6 +369,7 @@ public class StandardMoveCard : Card
 {
      public StandardMoveCard(){
          cName = "move";
+         tarhint = TargetHint.BLANK;
      }
 
     public override float getFitness(Being user, Tile target)
