@@ -5,28 +5,21 @@ using UnityEngine;
 public class Handler : MonoBehaviour
 {
     public static List<Being> beingList = new List<Being>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public Being sortBeingList(){
-        beingList.Sort(new BeingComparator<Being>());
+        beingList.Sort(new BeingComparator());
         return beingList[0];
     }
 }
 
-public class BeingComparator<Being> : Comparer<Being>{
+public class BeingComparator : Comparer<Being>{
 
     override public int Compare(Being x, Being y){
-        if (x.getTimeTilAction());
-        return 0;
+        if (x.timeTilAction() == y.timeTilAction()){
+        return 0;}
+        if (x.timeTilAction() < y.timeTilAction()){
+        return 1;
+        }
+        return -1;
     }
 }
