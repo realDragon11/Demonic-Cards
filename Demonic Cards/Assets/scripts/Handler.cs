@@ -7,6 +7,7 @@ public class Handler : MonoBehaviour
     public static List<Being> beingList = new List<Being>();
     public static Handler h;
     public GameObject ct;
+    public GameObject athing;
 
     public int xSize, ySize;
     public Room r;

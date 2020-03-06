@@ -35,7 +35,7 @@ public class Room
     internal static void moveTo(Being user, Tile target)
     {
        target.occupant = user;
-       user.curTile = target;
+       user.setCurTile(target);
     }
 }
 

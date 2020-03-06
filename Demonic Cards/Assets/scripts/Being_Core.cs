@@ -24,8 +24,14 @@ public class Being : canCollide
     private float agilityMult = 1f;
     private float timeToAct = 100f;
     private int actionsLeft = 0;
-    public Tile curTile;
+    private Tile curTile;
     public Card curCard = new CombatKnifeStab();
+    public Thing linkedThing;
+
+    public Being(Side s){
+        side = s;
+        GameObject.Instantiate(Handler.h.athing).TryGetComponent<Thing>(out linkedThing);
+    }
 
     public Side getSide(){
         return side;
@@ -121,6 +127,10 @@ public class Being : canCollide
     public Tile getTile()
     {
         return curTile;
+    }
+    public void setCurTile(Tile t){
+        curTile = t;
+        linkedThing.tile = t;
     }
 
     public CollidableType getSubType()

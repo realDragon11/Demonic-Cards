@@ -6,9 +6,8 @@ public class BeingFactory
 {
 
     public static Being generateGenericBeing(Side s, Tile t){
-        Being b = new Being();
-        b.setSide(s);
-        b.curTile = t;
+        Being b = new Being(s);
+        b.setCurTile(t);
         return b;
     }
 }
