@@ -14,6 +14,7 @@ public class tile_clicker : MonoBehaviour
     }
 
     void OnMouseDown(){
+        Debug.Log(tile.getX() + " " + tile.getY() + " clicked");
         onClick();
     }
 }

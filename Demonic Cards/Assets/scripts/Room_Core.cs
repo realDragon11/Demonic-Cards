@@ -52,6 +52,7 @@ public class Tile{
         //transform.position = new Vector3(x,y,-1);
         linked =  (GameObject.Instantiate(Handler.h.ct)).GetComponent<tile_clicker>();
         linked.gameObject.transform.position = new Vector3(x,y,-1);
+        linked.tile = this;
     }
 
     public int getX(){
