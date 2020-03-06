@@ -5,10 +5,25 @@ using UnityEngine;
 public class Handler : MonoBehaviour
 {
     public static List<Being> beingList = new List<Being>();
+    public static Handler h;
 
     public Being sortBeingList(){
         beingList.Sort(new BeingComparator());
         return beingList[0];
+    }
+
+    void Start(){//use awake to put things into the beinglist
+        h = this;
+        while (true){
+            sortBeingList().setTurn();
+        }
+    }
+
+    public static void advanceTime(float t){
+        foreach (Being b in beingList)
+        {
+            b.advanceTime(t);
+        }
     }
 }
 
@@ -17,7 +32,7 @@ public class BeingComparator : Comparer<Being>{
     override public int Compare(Being x, Being y){
         if (x.timeTilAction() == y.timeTilAction()){
         return 0;}
-        if (x.timeTilAction() < y.timeTilAction()){
+        if (x.timeTilAction() < y.timeTilAction()){//might be sorting in the wrong order
         return 1;
         }
         return -1;

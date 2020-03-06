@@ -101,9 +101,17 @@ public class Being : MonoBehaviour
     }
 
     public void setTurn(){
+        Handler.advanceTime(this.timeTilAction());
         turnWho = this;
         timeToAct = 100f;
         actionsLeft = speed;
+       if (this.getSide() != Side.PLAYER){
+           this.aiAct();
+       }
+    }
+
+    public void aiAct(){
+        
     }
 }
 public enum DamageType{

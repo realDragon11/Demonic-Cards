@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     protected ItemType type;
+    protected Sprite sprite;
     protected ItemSubType subType;
     protected string iname, desc;
     public ItemType getItemType(){
