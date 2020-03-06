@@ -130,7 +130,7 @@ public class Being : canCollide
     }
     public void setCurTile(Tile t){
         curTile = t;
-        linkedThing.tile = t;
+        linkedThing.setTile(t);
     }
 
     public CollidableType getSubType()
