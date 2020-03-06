@@ -9,13 +9,20 @@ public abstract class Card
 
     public abstract TileSet getTileSet();
     public abstract void use(Being user, Tile target);
+    public abstract float getFitness(Being user, Tile target);
     public Sprite image;
     protected string cName;
+    public bool aiDisabled = false;
     public string getName(){
         return cName;
     }
+
+    public TargetHint tarhint;
 }
 
+public enum TargetHint{
+    ENEMY, ALLY, BLANK
+}
 
 public class TileSet{
 

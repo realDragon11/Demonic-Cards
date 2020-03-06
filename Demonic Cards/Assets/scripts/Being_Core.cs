@@ -63,13 +63,19 @@ public class Being : canCollide
     }
 
     public bool damage(Attack a){
-        refreshDamageMultMap();//remove if this causes lag
-        foreach (Damage d in a.dams)
-        {
-            hitpoints-=d.dam*this.damMultMap.getResistMult(d.dt);
-        }
+       hitpoints-=getDamageAmount(a);
         Debug.Log("damaged: " + hitpoints);
         return isDead();
+    }
+
+    public float getDamageAmount(Attack a){
+        refreshDamageMultMap();//switch if this causes lag
+        float total= 0f;
+        foreach (Damage d in a.dams)
+        {
+            total+=d.dam*this.damMultMap.getResistMult(d.dt);
+        }
+        return total;
     }
 
     public void refreshDamageMultMap(){
@@ -364,6 +370,12 @@ public class StandardMoveCard : Card
      public StandardMoveCard(){
          cName = "move";
      }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        return .5f;
+    }
+
     public override TileSet getTileSet()
     {
         TileSet t = new TileSet();

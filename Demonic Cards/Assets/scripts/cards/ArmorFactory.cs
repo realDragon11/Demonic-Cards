@@ -14,7 +14,15 @@ public class BlankArmorCard : Card
 {
     public BlankArmorCard(){
         cName = "Blank Armor";
+        aiDisabled = true;
+        tarhint = TargetHint.ALLY;
     }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        return 0f;
+    }
+
     public override TileSet getTileSet()
     {
         TileSet t = new TileSet();
