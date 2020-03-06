@@ -70,7 +70,7 @@ public class Handler : MonoBehaviour
         foreach (Card c in cars)
         {
             TMP_Dropdown.OptionData data =  new TMP_Dropdown.OptionData();
-            data.image = c.image;
+            //data.image = c.image;
             data.text = c.getName();
             list.Add(data);
         }

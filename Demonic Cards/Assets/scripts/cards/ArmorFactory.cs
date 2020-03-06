@@ -12,6 +12,9 @@ public class ArmorFactory
 
 public class BlankArmorCard : Card
 {
+    public BlankArmorCard(){
+        cName = "Blank Armor";
+    }
     public override TileSet getTileSet()
     {
         TileSet t = new TileSet();

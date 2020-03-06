@@ -361,6 +361,9 @@ public class GenericRuntimeException : System.Exception
 
 public class StandardMoveCard : Card
 {
+     public StandardMoveCard(){
+         cName = "move";
+     }
     public override TileSet getTileSet()
     {
         TileSet t = new TileSet();

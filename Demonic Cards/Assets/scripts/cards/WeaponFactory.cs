@@ -17,6 +17,9 @@ public class WeaponFactory
 
 public class CombatKnifeStab : Card
 {
+    public CombatKnifeStab(){
+        cName = "Stab";
+    }
     public override TileSet getTileSet()
     {
         TileSet t = new TileSet();
