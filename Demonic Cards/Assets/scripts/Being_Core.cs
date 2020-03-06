@@ -31,7 +31,9 @@ public class Being : canCollide
     public Being(Side s){
         side = s;
         Debug.Log("Making a being.");
-        GameObject.Instantiate(Handler.h.athing).TryGetComponent<Thing>(out linkedThing);
+        if (!GameObject.Instantiate(Handler.h.athing).TryGetComponent<Thing>(out linkedThing)){
+            throw new GenericRuntimeException("Oh no!");
+        }
     }
 
     public Side getSide(){
@@ -118,7 +120,7 @@ public class Being : canCollide
         timeToAct = 100f;
         actionsLeft = speed;
        if (this.getSide() != Side.PLAYER){
-           this.aiAct();
+           //this.aiAct();
        }
     }
 

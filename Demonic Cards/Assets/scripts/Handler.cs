@@ -56,7 +56,7 @@ public class BeingComparator : Comparer<Being>{
     override public int Compare(Being x, Being y){
         if (x.timeTilAction() == y.timeTilAction()){
         return 0;}
-        if (x.timeTilAction() < y.timeTilAction()){//might be sorting in the wrong order
+        if (x.timeTilAction() > y.timeTilAction()){//might be sorting in the wrong order
         return 1;
         }
         return -1;
