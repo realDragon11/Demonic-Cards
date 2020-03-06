@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Handler : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Handler : MonoBehaviour
 
     public int xSize, ySize;
     public Room r;
+
+    public TMP_Text endTurnButton;
 
     public Being sortBeingList(){
         beingList.Sort(new BeingComparator());
@@ -37,6 +40,10 @@ public class Handler : MonoBehaviour
        // }
     }
 
+    void FixedUpdate(){
+        endTurnButton.text = "End Turn\nActions Left: " + Being.turnWho.getActionsLeft();
+    }
+
     public static void advanceTime(float t){
         foreach (Being b in beingList)
         {
@@ -47,6 +54,12 @@ public class Handler : MonoBehaviour
     public static void clickTile(Tile t){
         if (Being.turnWho.getSide() == Side.PLAYER){
             Being.turnWho.attemptToUseCard(Being.turnWho.curCard,t);
+        }
+    }
+
+    public void clickEndTurn(){
+        if (Being.turnWho.getSide() == Side.PLAYER){
+            nextTurn();
         }
     }
 }

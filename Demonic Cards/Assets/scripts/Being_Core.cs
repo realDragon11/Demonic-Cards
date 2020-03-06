@@ -178,6 +178,10 @@ public class Being : canCollide
     public canCollide getSub(){
         return this;
     }
+
+    public int getActionsLeft(){
+        return actionsLeft;
+    }
 }
 public enum DamageType{
     SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
