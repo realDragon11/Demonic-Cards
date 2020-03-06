@@ -44,8 +44,12 @@ public class Room
         }
     }
 
-    internal static void moveTo(Being user, Tile target)
+    public static void moveTo(Being user, Tile target)
     {
+        if (target.occupant != null){
+            throw new GenericRuntimeException("Tile already occupied!");
+        }
+        user.getTile().occupant = null;
        target.occupant = user;
        user.setCurTile(target);
     }

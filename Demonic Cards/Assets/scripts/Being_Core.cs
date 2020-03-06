@@ -171,7 +171,13 @@ public class Being : canCollide
     }
 
     public void aiAct(){
-        Debug.Log("A enemy skips their turn!");
+        Debug.Log("A enemy does their turn!");
+        int i = 0;
+        while (actionsLeft > 0 && i < 99){
+            AIAction a = AICore.decide(AICore.oneDeep(this));
+            attemptToUseCard(a.card,a.target);
+            i++;
+        }
         Handler.h.nextTurn();
     }
 
