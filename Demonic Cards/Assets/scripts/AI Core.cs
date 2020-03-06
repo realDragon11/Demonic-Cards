@@ -16,6 +16,11 @@ public class AICore
         }
         return list;
     }
+
+    public static AIAction decide(List<AIAction> list){
+        list.Sort(new AIActionComaparator());
+        return list[0];
+    }
 }
 
 public class AIAction{
@@ -37,5 +42,18 @@ public class AIAction{
             fitness = -1f;
         }
         
+    }
+}
+
+
+public class AIActionComaparator : Comparer<AIAction>{
+
+    override public int Compare(AIAction x, AIAction y){
+        if (x.fitness == y.fitness){
+        return 0;}
+        if (x.fitness < y.fitness){//might be sorting in the wrong order
+        return 1;
+        }
+        return -1;
     }
 }
