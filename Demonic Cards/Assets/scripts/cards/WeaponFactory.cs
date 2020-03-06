@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponFactory
 {
-    public static Weapon combat_knife = null;
+    private static Weapon combat_knife = null;
 
     public static Weapon getCombatKnife(){
         if (combat_knife == null){

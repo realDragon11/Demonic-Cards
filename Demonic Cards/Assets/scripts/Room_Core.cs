@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour
+public class Room
 {
    private List<List<Tile>> tiles = new List<List<Tile>>();
    private int xSize, ySize;
@@ -16,7 +16,7 @@ public class Room : MonoBehaviour
             tiles.Add(new List<Tile>());
             for (int j = 0; j < ySize; j++)
             {
-                tiles[i-1].Add(new Tile(i,j));
+                tiles[i].Add(new Tile(i,j));
             }
         }
     }
@@ -39,7 +39,7 @@ public class Room : MonoBehaviour
     }
 }
 
-public class Tile : MonoBehaviour{
+public class Tile{
     public Being occupant = null;
     public Floor floor;
     public Surface surf = Surface.NONE;
@@ -48,7 +48,7 @@ public class Tile : MonoBehaviour{
     public Tile(int x2, int y2){
         x = x2;
         y = y2;
-        transform.position = new Vector3(x,y,-1);
+        //transform.position = new Vector3(x,y,-1);
     }
 
     public int getX(){

@@ -11,11 +11,12 @@ The Core class containing beings and other core things
 public class Being : MonoBehaviour, canCollide
 {
     public static Being turnWho;
-    private float hitpoints;
+    private float hitpoints = 100;
     private Side side;
     public ResistMap baseRMap = new ResistMap();
     public List<Item> inv = new List<Item>();
-    private Armor head_a,arm_a,chest_a,leg_a,feet_a;
+    public Armor head_a = ArmorFactory.getGenericArmor(ItemSubType.HEAD_ARMOR),arm_a= ArmorFactory.getGenericArmor(ItemSubType.ARM_ARMOR),chest_a = ArmorFactory.getGenericArmor(ItemSubType.BODY_ARMOR),leg_a= ArmorFactory.getGenericArmor(ItemSubType.LEG_ARMOR),feet_a= ArmorFactory.getGenericArmor(ItemSubType.FEET_ARMOR);
+    public Weapon aWeap = WeaponFactory.getCombatKnife(), bWeap = WeaponFactory.getCombatKnife();
     public DamageMultMap damMultMap;
     public List<Buff> buffs = new List<Buff>();
     //how many cards it can play per turn

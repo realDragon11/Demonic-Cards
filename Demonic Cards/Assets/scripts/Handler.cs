@@ -7,9 +7,17 @@ public class Handler : MonoBehaviour
     public static List<Being> beingList = new List<Being>();
     public static Handler h;
 
+    public int xSize, ySize;
+    public Room r;
+
     public Being sortBeingList(){
         beingList.Sort(new BeingComparator());
         return beingList[0];
+    }
+
+    void Awake(){
+        r = new Room(xSize,ySize);
+        beingList.Add(BeingFactory.generateGenericBeing(Side.PLAYER,r.getTile(4,4)));
     }
 
     void Start(){//use awake to put things into the beinglist
