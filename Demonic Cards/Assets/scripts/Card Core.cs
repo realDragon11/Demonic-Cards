@@ -9,8 +9,15 @@ public abstract class Card
 
     public abstract TileSet getTileSet();
     public abstract void use(Being user, Tile target);
+    public Sprite image;
 }
 
 public class TileSet{
 
+public bool blockedByAllies = true, blockedByWalls = true, blockedByEnemies = true;
+public List<TileOffset> tos = new List<TileOffset>();
+}
+
+public class TileOffset{
+    public int xOff, yOff;
 }

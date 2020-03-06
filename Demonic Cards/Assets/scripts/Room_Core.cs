@@ -15,7 +15,7 @@ public class Room : MonoBehaviour
             tiles.Add(new List<Tile>());
             for (int j = 0; j < ySize; j++)
             {
-                tiles[i-1].Add(new Tile());
+                tiles[i-1].Add(new Tile(i,j));
             }
         }
     }
@@ -32,14 +32,30 @@ public class Room : MonoBehaviour
     }
 }
 
-public class Tile{
+public class Tile : MonoBehaviour{
     public Being occupant = null;
     public Floor floor;
     public Surface surf = Surface.NONE;
+    private int x, y;
+
+    public Tile(int x2, int y2){
+        x = x2;
+        y = y2;
+        transform.position = new Vector3(x,y,-1);
+    }
+
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
+
 }
 
 public class Floor{
     //sprite and stuff
+    public Sprite image;
 }
 
 public enum Surface{
