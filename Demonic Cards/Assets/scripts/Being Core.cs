@@ -12,7 +12,9 @@ public class Being : MonoBehaviour
     private float hitpoints;
     public ResistMap baseRMap = new ResistMap();
     public List<Item> inv = new List<Item>();
+    private Armor head_a,arm_a,chest_a,leg_a,feet_a;
     public DamageMultMap damMultMap;
+    public List<Buff> buffs = new List<Buff>();
 
     public void setHp(float h){
         hitpoints = h;
@@ -33,9 +35,24 @@ public class Being : MonoBehaviour
     public bool damage(Attack a){
         foreach (Damage d in a.dams)
         {
-            hitpoints-=d*this.damMultMap.getResistMult(d.dt);
+            hitpoints-=d.dam*this.damMultMap.getResistMult(d.dt);
         }
         return isDead();
+    }
+
+    public void refreshDamageMultMap(){
+        List<ResistMap> list = new List<ResistMap>();
+        foreach (Buff b in buffs)//is there really no addAll?
+        {
+            list.Add(b.rMap);
+        }
+        list.Add(head_a.resist);
+        list.Add(arm_a.resist);
+        list.Add(chest_a.resist);
+        list.Add(leg_a.resist);
+        list.Add(feet_a.resist);
+        list.Add(baseRMap);
+        damMultMap = ResistMap.consolidate(list);
     }
 }
 public enum DamageType{
