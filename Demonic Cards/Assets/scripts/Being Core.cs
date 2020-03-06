@@ -9,9 +9,34 @@ The Core class containing beings and other core things
 **/
 public class Being : MonoBehaviour
 {
-    private float hp;
+    private float hitpoints;
     public ResistMap baseRMap = new ResistMap();
     public List<Item> inv = new List<Item>();
+    public DamageMultMap damMultMap;
+
+    public void setHp(float h){
+        hitpoints = h;
+    }
+
+    public void addHp(float h){
+        hitpoints +=h;
+    }
+
+    public bool isDead(){
+        return hitpoints <= 0;
+    }
+
+    public float getHp(){
+        return hitpoints;
+    }
+
+    public bool damage(Attack a){
+        foreach (Damage d in a.dams)
+        {
+            hitpoints-=d*this.damMultMap.getResistMult(d.dt);
+        }
+        return isDead();
+    }
 }
 public enum DamageType{
     SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
@@ -84,7 +109,7 @@ public class DamageMultMap
         if (resists.ContainsKey(dt)){
             resists.TryGetValue(dt,out rVal);
         }
-        rVal+=resistValue;
+        rVal-=resistValue;
         resists.Add(dt,rVal);
     }
 
@@ -100,6 +125,7 @@ public class DamageMultMap
         resists.Add(dt,rVal);
     }
 
+    /*
      public void replaceResist(DamageType dt, float resistValue){
         if (resists.ContainsKey(dt)){
            resists.Remove(dt); 
@@ -107,6 +133,7 @@ public class DamageMultMap
             resists.Add(dt,resistValue);
         
     }
+    */
 
     public float getResistMult(DamageType dt){
         if (resists.ContainsKey(dt)){
@@ -116,6 +143,16 @@ public class DamageMultMap
         }
         return 1f;
     }
+}
+
+public class Attack{
+    public List<Damage> dams = new List<Damage>();
+    public Being attacker;
+}
+
+public class Damage{
+    public float dam;
+    public DamageType dt;
 }
 
 [System.Serializable]
