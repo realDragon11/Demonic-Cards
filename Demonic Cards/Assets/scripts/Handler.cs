@@ -16,6 +16,11 @@ public class Handler : MonoBehaviour
         return beingList[0];
     }
 
+    public void nextTurn(){
+        Being.turnWho = sortBeingList();
+        Being.turnWho.setTurn();
+    }
+
     void Awake(){
         h = this;
         r = new Room(xSize,ySize);

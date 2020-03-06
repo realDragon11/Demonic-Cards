@@ -115,7 +115,7 @@ public class Being : canCollide
     }
 
     public void aiAct(){
-
+        Handler.h.nextTurn();
     }
 
     public Tile getTile()
