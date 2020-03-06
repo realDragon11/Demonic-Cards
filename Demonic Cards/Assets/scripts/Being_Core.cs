@@ -158,6 +158,10 @@ public class Being : canCollide
         actionsLeft--;
         return true;
     }
+
+    public canCollide getSub(){
+        return this;
+    }
 }
 public enum DamageType{
     SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
@@ -321,6 +325,7 @@ public interface canCollide
 {
     CollidableType getSubType();
      Tile getTile();
+     canCollide getSub();
 }
 
 public enum CollidableType{
@@ -343,7 +348,7 @@ public static class Core{
                 if (item.collider.gameObject.TryGetComponent<canCollide>(out b)){
                     switch (b.getSubType()){
                         case CollidableType.BEING:
-                        Being a = (Being)b;
+                        Being a = (Being)b.getSub();
                         Side s = a.getSide();
                         if (user.getSide() == s && mask.blockedByAllies){
                             colList.Add(item.collider);
