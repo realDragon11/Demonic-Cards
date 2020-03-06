@@ -94,7 +94,31 @@ public class Being : canCollide
 
     public void draw(){
         cards.Clear();
-        
+        cards.Add(new StandardMoveCard());
+        cards.Add(aWeap.draw());
+        cards.Add(aWeap.draw());
+        cards.Add(bWeap.draw());
+        cards.Add(bWeap.draw());
+        for (int i = 0; i < 2;i++){
+            int j = Handler.randRange(1,5);
+            switch (j){
+                case 1:
+                cards.Add(head_a.draw());
+                break;
+                case 2:
+                cards.Add(arm_a.draw());
+                break;
+                case 3:
+                cards.Add(chest_a.draw());
+                break;
+                case 4:
+                cards.Add(leg_a.draw());
+                break;
+                case 5:
+                cards.Add(feet_a.draw());
+                break;
+            }
+        }
     }
 
     public void setSpeed(int spd){
@@ -132,8 +156,11 @@ public class Being : canCollide
         turnWho = this;
         timeToAct = 100f;
         actionsLeft = speed;
+        draw();
        if (this.getSide() != Side.PLAYER){
            this.aiAct();
+       }else{
+           Handler.h.displayCards(cards);
        }
     }
 
