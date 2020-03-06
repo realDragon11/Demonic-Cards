@@ -6,6 +6,7 @@ public class Handler : MonoBehaviour
 {
     public static List<Being> beingList = new List<Being>();
     public static Handler h;
+    public GameObject ct;
 
     public int xSize, ySize;
     public Room r;
@@ -16,6 +17,7 @@ public class Handler : MonoBehaviour
     }
 
     void Awake(){
+        h = this;
         r = new Room(xSize,ySize);
         beingList.Add(BeingFactory.generateGenericBeing(Side.PLAYER,r.getTile(4,4)));
     }

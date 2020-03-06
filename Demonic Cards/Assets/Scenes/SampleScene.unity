@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56218acd7a1d62344a32be8bb15561ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ct: {fileID: 973079914203508267, guid: 3f959229b02d6c44a83119ff223a3246, type: 3}
   xSize: 20
   ySize: 8
 --- !u!4 &825772797
