@@ -8,7 +8,7 @@ Brian M.
 3/5/2020
 The Core class containing beings and other core things
 **/
-public class Being : MonoBehaviour, canCollide
+public class Being : canCollide
 {
     public static Being turnWho;
     private float hitpoints = 100;

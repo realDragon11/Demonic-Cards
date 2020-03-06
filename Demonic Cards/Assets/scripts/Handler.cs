@@ -22,9 +22,9 @@ public class Handler : MonoBehaviour
 
     void Start(){//use awake to put things into the beinglist
         h = this;
-        while (true){
+        //while (true){
             sortBeingList().setTurn();
-        }
+       // }
     }
 
     public static void advanceTime(float t){
