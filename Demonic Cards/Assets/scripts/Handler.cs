@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class Handler : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class Handler : MonoBehaviour
 
     void FixedUpdate(){
         endTurnButton.text = "End Turn\nActions Left: " + Being.turnWho.getActionsLeft();
+        this.transform.position = Camera.current.ScreenToWorldPoint(Input.mousePosition);
     }
 
     public static void advanceTime(float t){
