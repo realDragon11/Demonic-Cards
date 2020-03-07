@@ -14,11 +14,15 @@ public class tile_clicker : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (Mathf.Abs(Input.mousePosition.x-this.transform.position.x) < 1 && Mathf.Abs(Input.mousePosition.y-this.transform.position.y) < 1 ){
+        
+        if (Mathf.Abs(Handler.h.mouseScreenPoint.x-this.transform.position.x) < .5f && Mathf.Abs(Handler.h.mouseScreenPoint.y-this.transform.position.y) < .5f ){
+                ;
                  if (Input.GetMouseButtonDown(1)){
+                     Debug.Log("Mouse detected at " + tile.getX() + " " + tile.getY());
                      onClick();
                  }else{
                      if (Input.GetMouseButtonDown(0)){
+                         Debug.Log("Mouse detected at " + tile.getX() + " " + tile.getY());
                          Handler.h.selectTile(tile);
                      }
                  }

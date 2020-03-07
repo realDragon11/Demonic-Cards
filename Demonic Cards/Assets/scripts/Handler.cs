@@ -12,6 +12,7 @@ public class Handler : MonoBehaviour
     public GameObject ct;
     public GameObject athing;
     public TMP_Dropdown cardSelector;
+    public Vector3 mouseScreenPoint;
 
     public int xSize, ySize;
     public Room r;
@@ -50,6 +51,7 @@ public class Handler : MonoBehaviour
     }
 
     void FixedUpdate(){
+         mouseScreenPoint = Camera.current.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
         endTurnButton.text = "End Turn\nActions Left: " + Being.turnWho.getActionsLeft();
         if (Vector2.Distance(Input.mousePosition,new Vector2(Camera.current.pixelWidth/2,Camera.current.pixelHeight/2)) > 300){
         this.transform.position = Camera.current.ScreenToWorldPoint(Input.mousePosition);}

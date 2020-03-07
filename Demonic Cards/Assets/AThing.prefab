@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subType: 0
+  text: {fileID: 5440724812565072429}
 --- !u!1 &5247911784277951038
 GameObject:
   m_ObjectHideFlags: 0
