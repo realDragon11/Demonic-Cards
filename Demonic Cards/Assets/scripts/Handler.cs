@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using System;
 
 public class Handler : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Handler : MonoBehaviour
     public Room r;
 
     public TMP_Text endTurnButton;
+    public Tile selectedTile;
 
     public Being sortBeingList(){
         beingList.Sort(new BeingComparator());
@@ -25,6 +27,11 @@ public class Handler : MonoBehaviour
     public void nextTurn(){
         Being.turnWho = sortBeingList();
         Being.turnWho.setTurn();
+    }
+
+    public void selectTile(Tile tile)
+    {
+        selectedTile = tile;
     }
 
     void Awake(){
@@ -44,7 +51,8 @@ public class Handler : MonoBehaviour
 
     void FixedUpdate(){
         endTurnButton.text = "End Turn\nActions Left: " + Being.turnWho.getActionsLeft();
-        this.transform.position = Camera.current.ScreenToWorldPoint(Input.mousePosition);
+        if (Vector2.Distance(Input.mousePosition,new Vector2(Camera.current.pixelWidth/2,Camera.current.pixelHeight/2)) > 300){
+        this.transform.position = Camera.current.ScreenToWorldPoint(Input.mousePosition);}
     }
 
     public static void advanceTime(float t){
@@ -85,7 +93,7 @@ public class Handler : MonoBehaviour
 
     /** My handy custom random function I use in all my java projects -Brian M.**/
     public static int randRange(int i, int j) {
-		return (int)(Random.Range(0,1)*(j+1-i))+i;
+		return (int)(UnityEngine.Random.Range(0,1)*(j+1-i))+i;
 	}
 }
 

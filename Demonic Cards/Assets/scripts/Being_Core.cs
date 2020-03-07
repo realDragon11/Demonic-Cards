@@ -12,6 +12,7 @@ public class Being : canCollide
 {
     public static Being turnWho;
     private float hitpoints = 100;
+    public float maxHp = 100;
     private Side side;
     public ResistMap baseRMap = new ResistMap();
     public List<Item> inv = new List<Item>();
@@ -65,6 +66,7 @@ public class Being : canCollide
     public bool damage(Attack a){
        hitpoints-=getDamageAmount(a);
         Debug.Log("damaged: " + hitpoints);
+        linkedThing.updateBeing(this);
         return isDead();
     }
 
@@ -448,6 +450,7 @@ public static class Core{
                 }
             }
         }
+        Debug.Log("Count: " + colList.Count);
         return !(colList.Count > 0);
     }
 

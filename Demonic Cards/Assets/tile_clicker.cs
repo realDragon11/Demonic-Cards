@@ -13,8 +13,23 @@ public class tile_clicker : MonoBehaviour
         Handler.clickTile(tile);
     }
 
+    void FixedUpdate(){
+        if (Mathf.Abs(Input.mousePosition.x-this.transform.position.x) < 1 && Mathf.Abs(Input.mousePosition.y-this.transform.position.y) < 1 ){
+                 if (Input.GetMouseButtonDown(1)){
+                     onClick();
+                 }else{
+                     if (Input.GetMouseButtonDown(0)){
+                         Handler.h.selectTile(tile);
+                     }
+                 }
+            }
+       
+    }
+
+    /**broke with the new camera addition
     void OnMouseDown(){
         Debug.Log(tile.getX() + " " + tile.getY() + " clicked");
         onClick();
     }
+    **/
 }
