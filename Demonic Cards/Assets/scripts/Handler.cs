@@ -51,10 +51,10 @@ public class Handler : MonoBehaviour
     }
 
     void FixedUpdate(){
-         mouseScreenPoint = Camera.current.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
+         mouseScreenPoint = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
         endTurnButton.text = "End Turn\nActions Left: " + Being.turnWho.getActionsLeft();
-        if (Vector2.Distance(Input.mousePosition,new Vector2(Camera.current.pixelWidth/2,Camera.current.pixelHeight/2)) > 300){
-        this.transform.position = Camera.current.ScreenToWorldPoint(Input.mousePosition);}
+        if (Vector2.Distance(Input.mousePosition,new Vector2(Camera.main.pixelWidth/2,Camera.main.pixelHeight/2)) > 300){
+        this.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);}
     }
 
     public static void advanceTime(float t){
@@ -91,6 +91,7 @@ public class Handler : MonoBehaviour
 
     public void selectCard(){
         Being.turnWho.selectCard(cardSelector.value);
+        r.selects();
     }
 
     /** My handy custom random function I use in all my java projects -Brian M.**/

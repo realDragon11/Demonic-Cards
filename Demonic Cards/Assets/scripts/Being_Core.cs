@@ -26,7 +26,7 @@ public class Being : canCollide
     private float timeToAct = 100f;
     private int actionsLeft = 0;
     private Tile curTile;
-    public Card curCard = new CombatKnifeStab();
+    public Card curCard = new StandardMoveCard();
     public Thing linkedThing;
 
     public List<Card> cards = new List<Card>();

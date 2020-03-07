@@ -54,6 +54,24 @@ public class Room
        target.occupant = user;
        user.setCurTile(target);
     }
+
+    public void selects()
+    {
+        foreach (List<Tile> ts in tiles)
+        {
+            foreach (Tile t in ts)
+            {
+                t.linked.selectable.SetActive(false);
+            }
+        }
+        foreach (TileOffset tOff in Being.turnWho.curCard.getTileSet().tos)
+        {
+            Tile t = getTile(Being.turnWho.getTile().getX()+tOff.xOff,Being.turnWho.getTile().getY()+tOff.yOff);
+            if (t != null){
+                t.linked.selectable.SetActive(true);
+            }
+        }
+    }
 }
 
 public class Tile{
