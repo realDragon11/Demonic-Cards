@@ -21,12 +21,6 @@ public class select_brain : MonoBehaviour
         nextPerson();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void selectWeapon1(){
         wSel1 = weapons[weaponOne.value];
     }
@@ -54,8 +48,14 @@ public class select_brain : MonoBehaviour
     public void nextPerson(){
         if (personId > 0){
             //save fields
-
-        
+            PlayerPrefs.SetString(personId+"_w1",wSel1);
+            PlayerPrefs.SetString(personId+"_w2",wSel1);
+            PlayerPrefs.SetString(personId+"_h",hSel);
+            PlayerPrefs.SetString(personId+"_c",cSel);
+            PlayerPrefs.SetString(personId+"_a",aSel);
+            PlayerPrefs.SetString(personId+"_l",lSel);
+            PlayerPrefs.SetString(personId+"_f",fSel);
+            PlayerPrefs.Save();
         }
         if (personId == 4){
             SceneManager.LoadSceneAsync("SampleScene");
