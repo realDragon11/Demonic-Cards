@@ -14,6 +14,10 @@ public class select_brain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weapons.Add("Combat Knife");
+        weapons.Add("Combat Knife");
+        weapons.Add("Combat Knife");
+        weapons.Add("Combat Knife");
         nextPerson();
     }
 
@@ -61,6 +65,11 @@ public class select_brain : MonoBehaviour
             if (!wSel1.Equals(wSel2)){
                 weapons.Remove(wSel2);
             }
+            headGear.Remove(hSel);
+            chestGear.Remove(cSel);
+            armGear.Remove(aSel);
+            legGear.Remove(lSel);
+            feetGear.Remove(fSel);
             //load stuff into dropdowns
             List<TMP_Dropdown.OptionData> list = new List<TMP_Dropdown.OptionData>();
             foreach (string s in weapons)
@@ -127,6 +136,11 @@ public class select_brain : MonoBehaviour
             //select first thing in each dropdown
             selectWeapon1();
             selectWeapon2();
+            selectHead();
+            selectChest();
+            selectArm();
+            selectLeg();
+            selectFeet();
             personId++;
             }
     }
