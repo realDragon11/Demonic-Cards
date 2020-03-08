@@ -6,6 +6,14 @@ public class WeaponFactory
 {
     private static Weapon combat_knife = null;
 
+    public static Weapon getWeaponByName(string str){
+        switch (str){
+            case "Combat Knife":
+            return getCombatKnife();
+        }
+        throw new GenericRuntimeException("Weapon not found!");
+    }
+
     public static Weapon getCombatKnife(){
         if (combat_knife == null){
             combat_knife = new Weapon(null,"Combat Knife","A balanced starting weapon that deals slashing and piercing.",ItemSubType.MELEE_WEAPON,new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeSlice(),new CombatKnifeSlice(),new CombatKnifeStab());
