@@ -62,7 +62,7 @@ public class AIAction{
                     }
                 }
             }else{
-                if (t.occupant != null){
+                if (t.occupant == null){
             fitness = c.getFitness(b,t);}else{fitness = -.8f;}
             }
         }
