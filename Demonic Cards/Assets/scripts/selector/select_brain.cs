@@ -56,11 +56,7 @@ public class select_brain : MonoBehaviour
             PlayerPrefs.SetString(personId+"_l",lSel);
             PlayerPrefs.SetString(personId+"_f",fSel);
             PlayerPrefs.Save();
-        }
-        if (personId == 4){
-            SceneManager.LoadSceneAsync("SampleScene");
-        }else{
-            //remove stuff from lists
+             //remove stuff from lists
             weapons.Remove(wSel1);
             if (!wSel1.Equals(wSel2)){
                 weapons.Remove(wSel2);
@@ -70,7 +66,20 @@ public class select_brain : MonoBehaviour
             armGear.Remove(aSel);
             legGear.Remove(lSel);
             feetGear.Remove(fSel);
+        }
+        if (personId == 4){
+            SceneManager.LoadSceneAsync("SampleScene");
+        }else{
+            Debug.Log("Managing selections.");
+           
             //load stuff into dropdowns
+            weaponOne.ClearOptions();
+            weaponTwo.ClearOptions();
+            headArmor.ClearOptions();
+            chestArmor.ClearOptions();
+            armArmor.ClearOptions();
+            legArmor.ClearOptions();
+            feetArmor.ClearOptions();
             List<TMP_Dropdown.OptionData> list = new List<TMP_Dropdown.OptionData>();
             foreach (string s in weapons)
             {
