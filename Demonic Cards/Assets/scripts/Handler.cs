@@ -38,9 +38,11 @@ public class Handler : MonoBehaviour
     void Awake(){
         h = this;
         r = new Room(xSize,ySize);
-        beingList.Add(BeingFactory.generateGenericBeing(Side.PLAYER,r.getTile(4,4)));
+        beingList.Add(BeingFactory.generatePlayer(1,r.getTile(4,2)));
+        beingList.Add(BeingFactory.generatePlayer(2,r.getTile(4,3)));
+        beingList.Add(BeingFactory.generatePlayer(3,r.getTile(4,4)));
+        beingList.Add(BeingFactory.generatePlayer(4,r.getTile(4,5)));
         beingList.Add(BeingFactory.generateShambler(r.getTile(5,4)));
-        beingList[0].setAgilityMult(1.2f);
     }
 
     void Start(){//use awake to put things into the beinglist

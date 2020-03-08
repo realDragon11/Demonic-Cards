@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,16 @@ public class BeingFactory
         b.moveCard = new ShamblerMoveCard();
         b.aWeap = WeaponFactory.getShamblerClaws();
         b.aWeap = WeaponFactory.getShamblerClaws();
+        return b;
+    }
+
+    public static Being generatePlayer(int num, Tile t)
+    {
+        Being b = new Being(Side.PLAYER);
+        Room.moveTo(b,t);
+        b.moveCard = new StandardMoveCard();
+        b.aWeap = WeaponFactory.getWeaponByName(PlayerPrefs.GetString(num+"_w1"));
+        b.bWeap = WeaponFactory.getWeaponByName(PlayerPrefs.GetString(num+"_w2"));
         return b;
     }
 }
