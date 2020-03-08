@@ -13,6 +13,15 @@ public class WeaponFactory
         return combat_knife;
     }
 
+    private static Weapon shambler_claws = null;
+
+    public static Weapon getShamblerClaws(){
+        if (shambler_claws == null){
+            shambler_claws = new Weapon(null,"Shambler Claws","A zombie's swing.",ItemSubType.MELEE_WEAPON,new ShamblerSwing(),new ShamblerSwing(),new ShamblerSwing(),new ShamblerSwing(),new ShamblerSwing());
+        }
+        return shambler_claws;
+    }
+
 }
 
 public class CombatKnifeStab : Card
@@ -107,6 +116,39 @@ public class CombatKnifeBackStab : Card
     {
         Attack a = new Attack();
         a.dams.Add(new Damage(20f,DamageType.PIERCE));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class ShamblerSwing : Card
+{
+    public ShamblerSwing(){
+        cName = "Swing";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(3f,DamageType.BLUNT));
+        a.dams.Add(new Damage(3f,DamageType.SLASH));
+        target.occupant.damage(a);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(3f,DamageType.BLUNT));
+        a.dams.Add(new Damage(3f,DamageType.SLASH));
         return target.occupant.getDamageAmount(a);
     }
 }

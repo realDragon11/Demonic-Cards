@@ -28,6 +28,7 @@ public class Being : canCollide
     private Tile curTile;
     public Card curCard = new StandardMoveCard();
     public Thing linkedThing;
+    public Card moveCard = new StandardMoveCard();
 
     public List<Card> cards = new List<Card>();
 
@@ -102,7 +103,7 @@ public class Being : canCollide
 
     public void draw(){
         cards.Clear();
-        cards.Add(new StandardMoveCard());
+        cards.Add(this.moveCard);
         cards.Add(aWeap.draw());
         cards.Add(aWeap.draw());
         cards.Add(bWeap.draw());

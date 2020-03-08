@@ -34,6 +34,6 @@ public class Thing : MonoBehaviour, canCollide
     }
 
     public void updateBeing(Being b){
-        text.text = "HP: " + b.getHp() + "/" + b.maxHp; 
+        text.text = "HP: " +  (int)b.getHp() + "/" + b.maxHp; 
     }
 }

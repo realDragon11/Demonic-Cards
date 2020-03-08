@@ -19,7 +19,19 @@ public class AICore
 
     public static AIAction decide(List<AIAction> list){
         list.Sort(new AIActionComaparator());
-        return list[0];
+        List<AIAction> removeList = new List<AIAction>();
+        foreach (AIAction a in list)
+        {
+            if (list[0].fitness-a.fitness > .2f){
+                removeList.Add(a);
+            }
+        }
+        foreach (AIAction a in removeList)
+        {
+            list.Remove(a);
+        }
+        
+        return list[Handler.randRange(0,list.Count-1)];
     }
 }
 
