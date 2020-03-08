@@ -22,7 +22,7 @@ public class ArmorFactory
 
     public static Armor getMiningHelmet(){
         if (mine_helm == null){
-            mine_helm = new Armor(null,"Mining Helmet","Has a bright flash",ItemSubType.HEAD_ARMOR,new ResistMap(),new MineHelmStun(),new MineHelmStun());
+            mine_helm = new Armor(null,"Mining Helmet","Has a bright flash.",ItemSubType.HEAD_ARMOR,new ResistMap(),new MineHelmStun(),new MineHelmStun());
             mine_helm.resist.addResist(DamageType.BLUNT,.1f);
         }
         return mine_helm;

@@ -13,6 +13,7 @@ public class Handler : MonoBehaviour
     public GameObject athing;
     public TMP_Dropdown cardSelector;
     public Vector3 mouseScreenPoint;
+    public GameObject activeUnit;
 
     public int xSize, ySize;
     public Room r;
@@ -57,6 +58,7 @@ public class Handler : MonoBehaviour
         endTurnButton.text = "End Turn\nActions Left: " + Being.turnWho.getActionsLeft();
         if (Vector2.Distance(Input.mousePosition,new Vector2(Camera.main.pixelWidth/2,Camera.main.pixelHeight/2)) > 300){
         this.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);}
+        activeUnit.transform.position = new Vector3(Being.turnWho.getTile().getX(),Being.turnWho.getTile().getY(),-3);
     }
 
     public static void advanceTime(float t){
