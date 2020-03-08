@@ -44,6 +44,16 @@ public class Being : canCollide
         return side;
     }
 
+    public void stun(float time){
+        refreshDamageMultMap();
+        timeToAct+=time*damMultMap.getResistMult(DamageType.STUN);
+    }
+
+    public float stunAmount(float time){
+        refreshDamageMultMap();
+        return time*damMultMap.getResistMult(DamageType.STUN);
+    }
+
     public void setSide(Side s){
         side = s;
     }
@@ -238,7 +248,8 @@ public class Being : canCollide
     }
 }
 public enum DamageType{
-    SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC
+    SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC,
+    STUN
 }
 
 public enum Side{
