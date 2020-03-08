@@ -18,6 +18,26 @@ public class select_brain : MonoBehaviour
         weapons.Add("Combat Knife");
         weapons.Add("Combat Knife");
         weapons.Add("Combat Knife");
+        headGear.Add("Mining Helmet");
+        headGear.Add("Mining Helmet");
+        headGear.Add("Mining Helmet");
+        headGear.Add("Mining Helmet");
+        chestGear.Add("Burster Core");
+        chestGear.Add("Burster Core");
+        chestGear.Add("Burster Core");
+        chestGear.Add("Burster Core");
+        legGear.Add("Basic Greaves");
+        legGear.Add("Basic Greaves");
+        legGear.Add("Basic Greaves");
+        legGear.Add("Basic Greaves");
+        feetGear.Add("Combat Boots");
+        feetGear.Add("Combat Boots");
+        feetGear.Add("Combat Boots");
+        feetGear.Add("Combat Boots");
+        armGear.Add("Combat Grip");
+        armGear.Add("Combat Grip");
+        armGear.Add("Combat Grip");
+        armGear.Add("Combat Grip");
         nextPerson();
     }
 
