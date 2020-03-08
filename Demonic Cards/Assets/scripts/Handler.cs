@@ -94,9 +94,9 @@ public class Handler : MonoBehaviour
         r.selects();
     }
 
-    /** My handy custom random function I use in all my java projects -Brian M.**/
+    /** unity random functions are bad and hard to use -Brian M.**/
     public static int randRange(int i, int j) {
-		return (int)(UnityEngine.Random.Range(0,1)*(j+1-i))+i;
+		return (int)(UnityEngine.Random.Range(i,j+1));
 	}
 }
 
