@@ -35,7 +35,24 @@ public class AIAction{
         target = t;
         try
         {
-            fitness = c.getFitness(b,t);
+            if (c.tarhint != TargetHint.BLANK){
+                if (c.tarhint == TargetHint.ALLY){
+                    if (t.occupant != null && t.occupant.getSide() == b.getSide()){
+                        fitness = c.getFitness(b,t);
+                    }else{
+                        fitness = -.8f;
+                    }
+                }else{
+                    if (t.occupant != null && t.occupant.getSide() != b.getSide()){
+                        fitness = c.getFitness(b,t);
+                    }else{
+                        fitness = -.8f;
+                    }
+                }
+            }else{
+                if (t.occupant != null){
+            fitness = c.getFitness(b,t);}else{fitness = -.8f;}
+            }
         }
         catch (System.Exception)
         {

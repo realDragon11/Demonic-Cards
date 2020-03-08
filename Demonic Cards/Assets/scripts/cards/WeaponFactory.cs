@@ -40,6 +40,9 @@ public class CombatKnifeStab : Card
     }
     public override float getFitness(Being user, Tile target)
     {
+        if (user.getSide() == target.occupant.getSide()){
+            return -1f;
+        }
         Attack a = new Attack();
         a.dams.Add(new Damage(10f,DamageType.PIERCE));
         return target.occupant.getDamageAmount(a);
@@ -73,6 +76,37 @@ public class CombatKnifeSlice : Card
     {
         Attack a = new Attack();
         a.dams.Add(new Damage(6f,DamageType.SLASH));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class CombatKnifeBackStab : Card
+{
+    public CombatKnifeBackStab(){
+        cName = "Backstab";
+        tarhint = TargetHint.ENEMY;
+    }
+
+    
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(-1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(20f,DamageType.PIERCE));
+        target.occupant.damage(a);
+    }
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(20f,DamageType.PIERCE));
         return target.occupant.getDamageAmount(a);
     }
 }
