@@ -20,8 +20,8 @@ public class select_brain : MonoBehaviour
         weapons.Add("Combat Knife");
         headGear.Add("Mining Helmet");
         headGear.Add("Mining Helmet");
-        headGear.Add("Mining Helmet");
-        headGear.Add("Mining Helmet");
+        headGear.Add("Brain Bucket");
+        headGear.Add("Brain Bucket");
         chestGear.Add("Burster Core");
         chestGear.Add("Burster Core");
         chestGear.Add("Burster Core");
@@ -41,26 +41,26 @@ public class select_brain : MonoBehaviour
         nextPerson();
     }
 
-    void selectWeapon1(){
+    public void selectWeapon1(){
         wSel1 = weapons[weaponOne.value];
     }
 
-    void selectWeapon2(){
+    public void selectWeapon2(){
         wSel2 = weapons[weaponTwo.value];
     }
-    void selectHead(){
+    public void selectHead(){
         hSel = headGear[headArmor.value];
     }
-    void selectChest(){
+    public void selectChest(){
         cSel = chestGear[chestArmor.value];
     }
-    void selectArm(){
+   public  void selectArm(){
         aSel = armGear[armArmor.value];
     }
-    void selectLeg(){
+    public void selectLeg(){
         lSel = legGear[legArmor.value];
     }
-    void selectFeet(){
+    public void selectFeet(){
         fSel = feetGear[feetArmor.value];
     }
 

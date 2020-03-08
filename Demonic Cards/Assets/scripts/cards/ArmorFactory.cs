@@ -98,7 +98,6 @@ public class HunkerDown : Card
 {
     public HunkerDown(){
         cName = "Hunker Down";
-        aiDisabled = true;
         tarhint = TargetHint.ALLY;
     }
 
