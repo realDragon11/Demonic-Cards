@@ -53,6 +53,9 @@ public class Room
         user.getTile().occupant = null;}
        target.occupant = user;
        user.setCurTile(target);
+       if (Being.turnWho != null && Being.turnWho.getSide() == Side.PLAYER){
+           Handler.h.r.selects();
+       }
     }
 
     public void selects()
