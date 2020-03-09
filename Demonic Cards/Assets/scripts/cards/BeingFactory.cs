@@ -29,6 +29,7 @@ public class BeingFactory
         b.aWeap = WeaponFactory.getWeaponByName(PlayerPrefs.GetString(num+"_w1"));
         b.bWeap = WeaponFactory.getWeaponByName(PlayerPrefs.GetString(num+"_w2"));
         b.head_a = ArmorFactory.getArmorByName(PlayerPrefs.GetString(num+"_h"));
+        b.chest_a = ArmorFactory.getArmorByName(PlayerPrefs.GetString(num+"_c"));
         return b;
     }
 }
