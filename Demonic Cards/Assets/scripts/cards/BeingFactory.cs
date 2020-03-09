@@ -18,6 +18,8 @@ public class BeingFactory
         b.moveCard = new ShamblerMoveCard();
         b.aWeap = WeaponFactory.getShamblerClaws();
         b.aWeap = WeaponFactory.getShamblerClaws();
+        b.baseRMap.addResist(DamageType.FIRE,-.2f);
+        b.baseRMap.addResist(DamageType.SLASH,-.1f);
         return b;
     }
 
