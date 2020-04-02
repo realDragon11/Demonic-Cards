@@ -30,8 +30,9 @@ public class select_brain : MonoBehaviour
         legGear.Add("Basic Greaves");
         legGear.Add("Basic Greaves");
         legGear.Add("Basic Greaves");
-        feetGear.Add("Combat Boots");
-        feetGear.Add("Combat Boots");
+        feetGear.Add("Traction Shoes");
+        feetGear.Add("Traction Shoes");
+        feetGear.Add("Traction Shoes");
         feetGear.Add("Combat Boots");
         feetGear.Add("Combat Boots");
         armGear.Add("Combat Grip");

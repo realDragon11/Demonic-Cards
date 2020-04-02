@@ -176,6 +176,7 @@ public class Being : canCollide
         timeToAct = 100f;
         actionsLeft = speed;
         draw();
+        Handler.h.r.selects();
        if (this.getSide() != Side.PLAYER){
            this.aiAct();
        }else{

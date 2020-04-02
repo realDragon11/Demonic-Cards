@@ -18,6 +18,14 @@ public class ArmorFactory
             return getBrainBucket();
             case "Burster Core":
             return getBursterCore();
+            case "Traction Shoes":
+            return getTractionShoes();
+            case "Combat Boots":
+            return getCombatBoots();
+            case "Basic Greaves":
+            return getBasicGreaves();
+            case "Combat Grip":
+            return getCombatGrip();
         }
         throw new GenericRuntimeException("Armor not found!");
     }
@@ -50,6 +58,43 @@ public class ArmorFactory
             burster_core.resist.addResist(DamageType.ELEC,-.1f);
         }
         return burster_core;
+    }
+    private static Armor traction_shoes;
+    public static Armor getTractionShoes(){
+        if (traction_shoes == null){
+            traction_shoes = new Armor(null,"Burster Core","Prevent you from being knocked back.",ItemSubType.FEET_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+        }
+        return traction_shoes;
+    }
+    private static Armor combat_boots;
+    public static Armor getCombatBoots(){
+        if (combat_boots == null){
+            combat_boots = new Armor(null,"Combat Boots","Keeps your feet on.",ItemSubType.FEET_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            combat_boots.resist.addResist(DamageType.BLUNT,.04f);
+            combat_boots.resist.addResist(DamageType.PIERCE,.04f);
+            combat_boots.resist.addResist(DamageType.SLASH,.04f);
+        }
+        return combat_boots;
+    }
+    private static Armor basic_greaves;
+    public static Armor getBasicGreaves(){
+        if (basic_greaves == null){
+            basic_greaves = new Armor(null,"Basic Greaves","Keeps your legs on.",ItemSubType.LEG_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            basic_greaves.resist.addResist(DamageType.BLUNT,.1f);
+            basic_greaves.resist.addResist(DamageType.PIERCE,.1f);
+            basic_greaves.resist.addResist(DamageType.SLASH,.1f);
+        }
+        return basic_greaves;
+    }
+    private static Armor combat_grip;
+    public static Armor getCombatGrip(){
+        if (combat_grip == null){
+            combat_grip = new Armor(null,"Combat Grip","Keeps your arms on.",ItemSubType.ARM_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            combat_grip.resist.addResist(DamageType.BLUNT,.7f);
+            combat_grip.resist.addResist(DamageType.PIERCE,.7f);
+            combat_grip.resist.addResist(DamageType.SLASH,.7f);
+        }
+        return combat_grip;
     }
 }
 
