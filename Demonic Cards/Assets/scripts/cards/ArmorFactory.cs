@@ -34,7 +34,7 @@ public class ArmorFactory
 
     public static Armor getMiningHelmet(){
         if (mine_helm == null){
-            mine_helm = new Armor(null,"Mining Helmet","Has a bright flash.",ItemSubType.HEAD_ARMOR,new ResistMap(),new MineHelmStun(),new MineHelmStun());
+            mine_helm = new Armor(Resources.Load<Sprite>("sprites/mining-helmet"),"Mining Helmet","Has a bright flash.",ItemSubType.HEAD_ARMOR,new ResistMap(),new MineHelmStun(),new MineHelmStun());
             mine_helm.resist.addResist(DamageType.BLUNT,.1f);
         }
         return mine_helm;
@@ -42,7 +42,7 @@ public class ArmorFactory
     private static Armor brain_bucket;
     public static Armor getBrainBucket(){
         if (brain_bucket == null){
-            brain_bucket = new Armor(null,"Brain Bucket","Keeps your head on.",ItemSubType.HEAD_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            brain_bucket = new Armor(Resources.Load<Sprite>("sprites/full-metal-bucket"),"Brain Bucket","Keeps your head on.",ItemSubType.HEAD_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
             brain_bucket.resist.addResist(DamageType.BLUNT,.05f);
             brain_bucket.resist.addResist(DamageType.PIERCE,.15f);
             brain_bucket.resist.addResist(DamageType.SLASH,.1f);
@@ -62,14 +62,14 @@ public class ArmorFactory
     private static Armor traction_shoes;
     public static Armor getTractionShoes(){
         if (traction_shoes == null){
-            traction_shoes = new Armor(null,"Burster Core","Prevent you from being knocked back.",ItemSubType.FEET_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            traction_shoes = new Armor(Resources.Load<Sprite>("sprites/boot-stomp"),"Traction Shoes","Prevent you from being knocked back.",ItemSubType.FEET_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
         }
         return traction_shoes;
     }
     private static Armor combat_boots;
     public static Armor getCombatBoots(){
         if (combat_boots == null){
-            combat_boots = new Armor(null,"Combat Boots","Keeps your feet on.",ItemSubType.FEET_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            combat_boots = new Armor(Resources.Load<Sprite>("sprites/boots"),"Combat Boots","Keeps your feet on.",ItemSubType.FEET_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
             combat_boots.resist.addResist(DamageType.BLUNT,.04f);
             combat_boots.resist.addResist(DamageType.PIERCE,.04f);
             combat_boots.resist.addResist(DamageType.SLASH,.04f);
@@ -79,7 +79,7 @@ public class ArmorFactory
     private static Armor basic_greaves;
     public static Armor getBasicGreaves(){
         if (basic_greaves == null){
-            basic_greaves = new Armor(null,"Basic Greaves","Keeps your legs on.",ItemSubType.LEG_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            basic_greaves = new Armor(Resources.Load<Sprite>("sprites/armored-pants"),"Basic Greaves","Keeps your legs on.",ItemSubType.LEG_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
             basic_greaves.resist.addResist(DamageType.BLUNT,.1f);
             basic_greaves.resist.addResist(DamageType.PIERCE,.1f);
             basic_greaves.resist.addResist(DamageType.SLASH,.1f);
