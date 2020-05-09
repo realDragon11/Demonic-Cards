@@ -21,6 +21,10 @@ public class Room
         }
     }
 
+    public int getXSize(){
+        return xSize;
+    }
+
     public Tile getTileRelative(Tile tile, TileOffset t)
     {
        try
@@ -40,6 +44,7 @@ public class Room
         }
         catch (System.Exception)
         {
+            Debug.Log("Null tile - " + x + " : " + y);
             return null;
         }
     }

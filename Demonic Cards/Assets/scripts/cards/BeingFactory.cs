@@ -67,6 +67,12 @@ public class ShamblerMoveCard : Card
 
     public override void use(Being user, Tile target)
     {
+        try{
+        if (user.getTile().getX() < 3){
+            Debug.Log(Handler.h.r.getXSize());
+            Room.moveTo(user,Handler.h.r.getTile(Handler.h.r.getXSize()-1,user.getTile().getY()));
+            return;
+        }}catch(Exception e){Debug.Log(e);}
        if (Core.clearRay(user,user.getTile(),target,this.getTileSet() ,true)){
            Room.moveTo(user,target);
        }
