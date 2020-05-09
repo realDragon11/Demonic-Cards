@@ -52,7 +52,7 @@ public class ArmorFactory
     private static Armor burster_core;
     public static Armor getBursterCore(){
         if (burster_core == null){
-            burster_core = new Armor(null,"Burster Core","OMG LAZORS.",ItemSubType.HEAD_ARMOR,new ResistMap(),new BusterCoreBurst(),new BusterCoreBurst());
+            burster_core = new Armor(Resources.Load<Sprite>("sprites/laser-warning-icon"),"Burster Core","OMG LAZORS.",ItemSubType.HEAD_ARMOR,new ResistMap(),new BusterCoreBurst(),new BusterCoreBurst());
             burster_core.resist.addResist(DamageType.FIRE,.15f);
             burster_core.resist.addResist(DamageType.ICE,.1f);
             burster_core.resist.addResist(DamageType.ELEC,-.1f);
@@ -89,7 +89,7 @@ public class ArmorFactory
     private static Armor combat_grip;
     public static Armor getCombatGrip(){
         if (combat_grip == null){
-            combat_grip = new Armor(null,"Combat Grip","Keeps your arms on.",ItemSubType.ARM_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            combat_grip = new Armor(Resources.Load<Sprite>("sprites/arm"),"Combat Grip","Keeps your arms on.",ItemSubType.ARM_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
             combat_grip.resist.addResist(DamageType.BLUNT,.7f);
             combat_grip.resist.addResist(DamageType.PIERCE,.7f);
             combat_grip.resist.addResist(DamageType.SLASH,.7f);
@@ -130,6 +130,7 @@ public class MineHelmStun : Card
     public MineHelmStun(){
         cName = "Flash Helmet";
         tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/mining-helmet");
     }
     public override TileSet getTileSet()
     {
@@ -157,6 +158,7 @@ public class HunkerDown : Card
     public HunkerDown(){
         cName = "Hunker Down";
         tarhint = TargetHint.ALLY;
+        image = Resources.Load<Sprite>("sprites/defensive-wall");
     }
 
     public override float getFitness(Being user, Tile target)
@@ -189,6 +191,7 @@ public class BusterCoreBurst : Card
     public BusterCoreBurst(){
         cName = "Burst Core";
         tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/laser-sparks");
     }
 
     

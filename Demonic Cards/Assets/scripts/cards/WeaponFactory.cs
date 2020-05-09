@@ -37,6 +37,7 @@ public class CombatKnifeStab : Card
     public CombatKnifeStab(){
         cName = "Stab";
         tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/knife-thrust");
     }
 
     
@@ -71,6 +72,7 @@ public class CombatKnifeSlice : Card
     public CombatKnifeSlice(){
         cName = "Slice";
         tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/sword-slice");
     }
     public override TileSet getTileSet()
     {
@@ -102,6 +104,7 @@ public class CombatKnifeBackStab : Card
     public CombatKnifeBackStab(){
         cName = "Backstab";
         tarhint = TargetHint.ENEMY;
+        Resources.Load<Sprite>("sprites/backstab");
     }
 
     

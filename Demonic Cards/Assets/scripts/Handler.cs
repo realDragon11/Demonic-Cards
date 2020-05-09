@@ -91,6 +91,7 @@ public class Handler : MonoBehaviour
             TMP_Dropdown.OptionData data =  new TMP_Dropdown.OptionData();
             //data.image = c.image;
             data.text = c.getName();
+            data.image = c.image;
             list.Add(data);
         }
         cardSelector.AddOptions(list);
