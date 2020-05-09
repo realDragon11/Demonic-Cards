@@ -80,6 +80,12 @@ public class Handler : MonoBehaviour
         beingList.Add(BeingFactory.generateShambler(r.getTile(8,3)));
         beingList.Add(BeingFactory.generateGoo(r.getTile(9,7)));
         break;
+        case 1: 
+        beingList.Add(BeingFactory.generatePitchfork(r.getTile(8,4)));
+        beingList.Add(BeingFactory.generatePitchfork(r.getTile(8,5)));
+        beingList.Add(BeingFactory.generateShambler(r.getTile(8,3)));
+        beingList.Add(BeingFactory.generateGoo(r.getTile(8,7)));
+        break;
         }
     }
 

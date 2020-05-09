@@ -34,10 +34,24 @@ public class BeingFactory
         b.bWeap = WeaponFactory.getGoopBash();
         b.baseRMap.addResist(DamageType.FIRE,-.3f);
         b.baseRMap.addResist(DamageType.SLASH,-.2f);
+        b.baseRMap.addResist(DamageType.ACID,.5f);
         b.setSprite(Resources.Load<Sprite>("sprites/gooey-daemon"));
         b.maxHp = 20f;
         b.setHp(b.maxHp);
         b.name = "Goo Demon";
+        return b;
+    }
+    public static Being generatePitchfork( Tile t){
+        Being b = new Being(Side.DEMONS);
+        Room.moveTo(b,t);
+        b.moveCard = new PitchforkMoveCard();
+        b.aWeap = WeaponFactory.getPitchfork();
+        b.bWeap = WeaponFactory.getPitchfork();
+        b.baseRMap.addResist(DamageType.FIRE,.3f);
+        b.setSprite(Resources.Load<Sprite>("sprites/evil-fork"));
+        b.maxHp = 15f;
+        b.setHp(b.maxHp);
+        b.name = "Demonic Pitchfork";
         return b;
     }
 
@@ -121,6 +135,46 @@ public class GooMoveCard : Card
         t.tos.Add(new TileOffset(2,0));
         t.tos.Add(new TileOffset(2,-1));
         t.tos.Add(new TileOffset(2,1));
+        return t;
+    }
+
+    public override void use(Being user, Tile target)
+    {
+        try{
+        if (user.getTile().getX() < 3){
+            Debug.Log(Handler.h.r.getXSize());
+            Room.moveTo(user,Handler.h.r.getTile(Handler.h.r.getXSize()-1,user.getTile().getY()));
+            return;
+        }}catch(Exception e){Debug.Log(e);}
+       if (Core.clearRay(user,user.getTile(),target,this.getTileSet() ,true)){
+           Room.moveTo(user,target);
+       }
+    }
+}
+
+public class PitchforkMoveCard : Card
+{
+     public PitchforkMoveCard(){
+         cName = "pitchfork move";
+         tarhint = TargetHint.BLANK;
+     }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        return .5f;
+    }
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        t.tos.Add(new TileOffset(0,1));
+        t.tos.Add(new TileOffset(0,-1));
+        t.tos.Add(new TileOffset(-1,-1));
+        t.tos.Add(new TileOffset(-1,1));
+        t.tos.Add(new TileOffset(-1,0));
         return t;
     }
 

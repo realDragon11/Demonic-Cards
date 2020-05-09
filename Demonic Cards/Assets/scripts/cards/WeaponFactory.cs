@@ -45,6 +45,13 @@ public class WeaponFactory
         }
         return goop_bash;
     }
+    private static Weapon pitchfork = null;
+     public static Weapon getPitchfork(){
+        if (pitchfork == null){
+            pitchfork = new Weapon(null,"Pitchfork","",ItemSubType.MELEE_WEAPON,new Pitchfork(),new Pitchfork(),new Pitchfork(),new Pitchfork(),new Pitchfork());
+        }
+        return pitchfork;
+    }
 
 }
 
@@ -261,6 +268,44 @@ public class GoopBash : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(5f,DamageType.BLUNT));
         a.dams.Add(new Damage(5f,DamageType.ACID));
+        //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class Pitchfork : Card
+{
+    public Pitchfork(){
+        cName = "Pitchfork";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        t.tos.Add(new TileOffset(0,1));
+        t.tos.Add(new TileOffset(0,-1));
+        t.tos.Add(new TileOffset(-1,-1));
+        t.tos.Add(new TileOffset(-1,1));
+        t.tos.Add(new TileOffset(-1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(15f,DamageType.PIERCE));
+        target.occupant.damage(a);
+        Handler.logA("The " + user.name + " skewers " + target.occupant.name + "!",user.sprite);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(15f,DamageType.PIERCE));
         //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
         return target.occupant.getDamageAmount(a);
     }
