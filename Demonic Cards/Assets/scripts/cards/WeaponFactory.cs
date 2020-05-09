@@ -71,6 +71,7 @@ public class CombatKnifeStab : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(10f,DamageType.PIERCE));
         target.occupant.damage(a);
+        Handler.logA(user.name + " stabs the " + target.occupant.name + "!",this.image);
     }
     public override float getFitness(Being user, Tile target)
     {
@@ -105,6 +106,7 @@ public class CombatKnifeSlice : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(6f,DamageType.SLASH));
         target.occupant.damage(a);
+        Handler.logA(user.name + " slices at the " + target.occupant.name + "!",this.image);
     }
 
     public override float getFitness(Being user, Tile target)
@@ -120,7 +122,7 @@ public class CombatKnifeBackStab : Card
     public CombatKnifeBackStab(){
         cName = "Backstab";
         tarhint = TargetHint.ENEMY;
-        Resources.Load<Sprite>("sprites/backstab");
+        image= Resources.Load<Sprite>("sprites/backstab");
     }
 
     
@@ -138,6 +140,7 @@ public class CombatKnifeBackStab : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(20f,DamageType.PIERCE));
         target.occupant.damage(a);
+        Handler.logA(user.name + " backstabs the " + target.occupant.name + "!",this.image);
     }
     public override float getFitness(Being user, Tile target)
     {

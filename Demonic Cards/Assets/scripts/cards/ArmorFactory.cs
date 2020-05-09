@@ -160,6 +160,7 @@ public class MineHelmStun : Card
     public override void use(Being user, Tile target)
     {
         target.occupant.stun(20f);
+        Handler.logA(user.name + " flashes their helmet's light at the " + target.occupant.name + "!",this.image);
     }
 
     public override float getFitness(Being user, Tile target)
@@ -197,6 +198,7 @@ public class HunkerDown : Card
         b.rMap.addResist(DamageType.SLASH,.1f);
         b.rMap.addResist(DamageType.REND,.05f);
         b.setTimeLeft(200);
+        Handler.logA(user.name + " hunkers down.",this.image);
         user.buffs.Add(b);
     }
 }
@@ -224,6 +226,7 @@ public class BusterCoreBurst : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(10f,DamageType.FIRE));
         target.occupant.damage(a);
+        Handler.logA(user.name + " burst their core at the " + target.occupant.name + "!",this.image);
     }
     public override float getFitness(Being user, Tile target)
     {

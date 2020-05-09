@@ -17,7 +17,7 @@ public class BeingFactory
         Room.moveTo(b,t);
         b.moveCard = new ShamblerMoveCard();
         b.aWeap = WeaponFactory.getShamblerClaws();
-        b.aWeap = WeaponFactory.getShamblerClaws();
+        b.bWeap = WeaponFactory.getShamblerClaws();
         b.baseRMap.addResist(DamageType.FIRE,-.2f);
         b.baseRMap.addResist(DamageType.SLASH,-.1f);
         b.setSprite(Resources.Load<Sprite>("sprites/shambling-zombie"));
@@ -31,7 +31,7 @@ public class BeingFactory
         Room.moveTo(b,t);
         b.moveCard = new GooMoveCard();
         b.aWeap = WeaponFactory.getGoopThrow();
-        b.aWeap = WeaponFactory.getGoopBash();
+        b.bWeap = WeaponFactory.getGoopBash();
         b.baseRMap.addResist(DamageType.FIRE,-.3f);
         b.baseRMap.addResist(DamageType.SLASH,-.2f);
         b.setSprite(Resources.Load<Sprite>("sprites/gooey-daemon"));
