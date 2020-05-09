@@ -150,16 +150,16 @@ public class ShamblerSwing : Card
     public override void use(Being user, Tile target)
     {
         Attack a = new Attack();
-        a.dams.Add(new Damage(3f,DamageType.BLUNT));
-        a.dams.Add(new Damage(3f,DamageType.SLASH));
+        a.dams.Add(new Damage(5f,DamageType.BLUNT));
+        a.dams.Add(new Damage(5f,DamageType.SLASH));
         target.occupant.damage(a);
     }
 
     public override float getFitness(Being user, Tile target)
     {
         Attack a = new Attack();
-        a.dams.Add(new Damage(3f,DamageType.BLUNT));
-        a.dams.Add(new Damage(3f,DamageType.SLASH));
+        a.dams.Add(new Damage(5f,DamageType.BLUNT));
+        a.dams.Add(new Damage(5f,DamageType.SLASH));
         //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
         return target.occupant.getDamageAmount(a);
     }

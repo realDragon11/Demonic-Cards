@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Cinemachine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Handler : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Handler : MonoBehaviour
     public TMP_Dropdown cardSelector;
     public Vector3 mouseScreenPoint;
     public GameObject activeUnit;
+    public int level;
 
     public int xSize, ySize;
     public Room r;
@@ -41,16 +43,20 @@ public class Handler : MonoBehaviour
     }
 
     void Awake(){
+        level = PlayerPrefs.GetInt("curLevel");
         h = this;
         r = new Room(xSize,ySize);
         beingList.Add(BeingFactory.generatePlayer(1,r.getTile(4,2)));
         beingList.Add(BeingFactory.generatePlayer(2,r.getTile(4,3)));
         beingList.Add(BeingFactory.generatePlayer(3,r.getTile(4,4)));
         beingList.Add(BeingFactory.generatePlayer(4,r.getTile(4,5)));
-        beingList.Add(BeingFactory.generateShambler(r.getTile(5,4)));
+        switch (level){
+        case 0: beingList.Add(BeingFactory.generateShambler(r.getTile(5,4)));
         beingList.Add(BeingFactory.generateShambler(r.getTile(7,5)));
         beingList.Add(BeingFactory.generateShambler(r.getTile(8,3)));
         beingList.Add(BeingFactory.generateShambler(r.getTile(9,7)));
+        break;
+        }
     }
 
     void Start(){//use awake to put things into the beinglist
@@ -69,10 +75,32 @@ public class Handler : MonoBehaviour
     }
 
     public static void advanceTime(float t){
+        bool hasPlayer = false;
+        bool hasFoe = false;
         foreach (Being b in beingList)
         {
             b.advanceTime(t);
+            if (b.getSide().Equals(Side.PLAYER)){
+                hasPlayer = true;
+            }else{
+                hasFoe = true;
+            }
         }
+        if (hasFoe == false){
+            nextLevel();
+        }else{
+            if (hasPlayer == false){
+                resetGame();
+            }
+        }
+    }
+    public static void resetGame(){
+        PlayerPrefs.SetInt("curLevel",0);
+        SceneManager.LoadScene(0);
+    }
+    public static void nextLevel(){
+        PlayerPrefs.SetInt("curLevel",h.level+1);
+        SceneManager.LoadScene(1);
     }
 
     public static void clickTile(Tile t){

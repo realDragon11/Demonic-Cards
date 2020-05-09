@@ -84,6 +84,7 @@ public class Being : canCollide
         Debug.Log("damaged: " + hitpoints);
         linkedThing.updateBeing(this);
         if (isDead()){
+            this.curTile.occupant = null;
             GameObject.Destroy(linkedThing.gameObject);
             Handler.h.kill(this);
         }

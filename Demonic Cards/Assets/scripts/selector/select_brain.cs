@@ -14,6 +14,7 @@ public class select_brain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("curLevel",0);
         weapons.Add("Combat Knife");
         weapons.Add("Combat Knife");
         weapons.Add("Combat Knife");
