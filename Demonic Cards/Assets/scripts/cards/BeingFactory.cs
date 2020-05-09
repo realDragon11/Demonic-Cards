@@ -24,6 +24,19 @@ public class BeingFactory
         b.maxHp = 30f;
         b.setHp(b.maxHp);
         return b;
+    }//
+    public static Being generateGoo( Tile t){
+        Being b = new Being(Side.DEMONS);
+        Room.moveTo(b,t);
+        b.moveCard = new GooMoveCard();
+        b.aWeap = WeaponFactory.getGoopThrow();
+        b.aWeap = WeaponFactory.getGoopBash();
+        b.baseRMap.addResist(DamageType.FIRE,-.3f);
+        b.baseRMap.addResist(DamageType.SLASH,-.2f);
+        b.setSprite(Resources.Load<Sprite>("sprites/gooey-daemon"));
+        b.maxHp = 20f;
+        b.setHp(b.maxHp);
+        return b;
     }
 
     public static Being generatePlayer(int num, Tile t)
@@ -62,6 +75,44 @@ public class ShamblerMoveCard : Card
         t.tos.Add(new TileOffset(1,0));
         t.tos.Add(new TileOffset(1,-1));
         t.tos.Add(new TileOffset(1,1));
+        return t;
+    }
+
+    public override void use(Being user, Tile target)
+    {
+        try{
+        if (user.getTile().getX() < 3){
+            Debug.Log(Handler.h.r.getXSize());
+            Room.moveTo(user,Handler.h.r.getTile(Handler.h.r.getXSize()-1,user.getTile().getY()));
+            return;
+        }}catch(Exception e){Debug.Log(e);}
+       if (Core.clearRay(user,user.getTile(),target,this.getTileSet() ,true)){
+           Room.moveTo(user,target);
+       }
+    }
+}
+
+public class GooMoveCard : Card
+{
+     public GooMoveCard(){
+         cName = "goo move";
+         tarhint = TargetHint.BLANK;
+     }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        return .5f;
+    }
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(2,-1));
+        t.tos.Add(new TileOffset(2,1));
         return t;
     }
 

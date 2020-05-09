@@ -51,10 +51,11 @@ public class Handler : MonoBehaviour
         beingList.Add(BeingFactory.generatePlayer(3,r.getTile(4,4)));
         beingList.Add(BeingFactory.generatePlayer(4,r.getTile(4,5)));
         switch (level){
-        case 0: beingList.Add(BeingFactory.generateShambler(r.getTile(5,4)));
+        case 0: 
+        beingList.Add(BeingFactory.generateShambler(r.getTile(5,4)));
         beingList.Add(BeingFactory.generateShambler(r.getTile(7,5)));
         beingList.Add(BeingFactory.generateShambler(r.getTile(8,3)));
-        beingList.Add(BeingFactory.generateShambler(r.getTile(9,7)));
+        beingList.Add(BeingFactory.generateGoo(r.getTile(9,7)));
         break;
         }
     }

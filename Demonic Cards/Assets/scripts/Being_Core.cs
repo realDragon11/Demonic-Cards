@@ -268,7 +268,7 @@ public class Being : canCollide
     }
 }
 public enum DamageType{
-    SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC,
+    SLASH, BLUNT, PIERCE, REND, FIRE, ICE, ELEC, HOLY, DEMONIC, ACID,
     STUN
 }
 

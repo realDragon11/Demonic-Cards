@@ -30,6 +30,22 @@ public class WeaponFactory
         return shambler_claws;
     }
 
+    private static Weapon goop_throw = null;
+    public static Weapon getGoopThrow(){
+        if (goop_throw == null){
+            goop_throw = new Weapon(null,"Goop Throw","",ItemSubType.MELEE_WEAPON,new GoopThrow(),new GoopThrow(),new GoopThrow(),new GoopThrow(),new GoopThrow());
+        }
+        return goop_throw;
+    }
+
+    private static Weapon goop_bash = null;
+    public static Weapon getGoopBash(){
+        if (goop_bash == null){
+            goop_bash = new Weapon(null,"Goop Bash","",ItemSubType.MELEE_WEAPON,new GoopBash(),new GoopBash(),new GoopBash(),new GoopBash(),new GoopBash());
+        }
+        return goop_bash;
+    }
+
 }
 
 public class CombatKnifeStab : Card
@@ -160,6 +176,85 @@ public class ShamblerSwing : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(5f,DamageType.BLUNT));
         a.dams.Add(new Damage(5f,DamageType.SLASH));
+        //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class GoopThrow : Card
+{
+    public GoopThrow(){
+        cName = "GooThrow";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(2,-1));
+        t.tos.Add(new TileOffset(2,1));
+        t.tos.Add(new TileOffset(3,0));
+        t.tos.Add(new TileOffset(3,-1));
+        t.tos.Add(new TileOffset(3,1));
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(1f,DamageType.BLUNT));
+        a.dams.Add(new Damage(14f,DamageType.ACID));
+        target.occupant.damage(a);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(1f,DamageType.BLUNT));
+        a.dams.Add(new Damage(14f,DamageType.ACID));
+        //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class GoopBash : Card
+{
+    public GoopBash(){
+        cName = "GooBash";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        t.tos.Add(new TileOffset(0,1));
+        t.tos.Add(new TileOffset(0,-1));
+        t.tos.Add(new TileOffset(-1,-1));
+        t.tos.Add(new TileOffset(-1,1));
+        t.tos.Add(new TileOffset(-1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(5f,DamageType.BLUNT));
+        a.dams.Add(new Damage(5f,DamageType.ACID));
+        target.occupant.damage(a);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(5f,DamageType.BLUNT));
+        a.dams.Add(new Damage(5f,DamageType.ACID));
         //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
         return target.occupant.getDamageAmount(a);
     }
