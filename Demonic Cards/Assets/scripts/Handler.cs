@@ -66,6 +66,7 @@ public class Handler : MonoBehaviour
     }
 
     void Awake(){
+        beingList.Clear();
         level = PlayerPrefs.GetInt("curLevel");
         h = this;
         r = new Room(xSize,ySize);
@@ -153,6 +154,10 @@ public class Handler : MonoBehaviour
         if (Being.turnWho.getSide() == Side.PLAYER){
             loadLog();
             Being.turnWho.attemptToUseCard(Being.turnWho.curCard,t);
+        }
+        foreach (Being item in beingList)
+        {
+            item.checkDeadRemove();
         }
     }
 

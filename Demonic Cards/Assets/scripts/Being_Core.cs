@@ -86,12 +86,16 @@ public class Being : canCollide
        hitpoints-=getDamageAmount(a);
         Debug.Log("damaged: " + hitpoints);
         linkedThing.updateBeing(this);
+        
+        return isDead();
+    }
+
+    public void checkDeadRemove(){
         if (isDead()){
             this.curTile.occupant = null;
             GameObject.Destroy(linkedThing.gameObject);
             Handler.h.kill(this);
         }
-        return isDead();
     }
 
     public float getDamageAmount(Attack a){
