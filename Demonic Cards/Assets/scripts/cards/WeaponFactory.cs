@@ -33,7 +33,7 @@ public class WeaponFactory
     private static Weapon goop_throw = null;
     public static Weapon getGoopThrow(){
         if (goop_throw == null){
-            goop_throw = new Weapon(null,"Goop Throw","",ItemSubType.MELEE_WEAPON,new GoopThrow(),new GoopThrow(),new GoopThrow(),new GoopThrow(),new GoopThrow());
+            goop_throw = new Weapon(null,"Goop Throw","",ItemSubType.RANGED_WEAPON,new GoopThrow(),new GoopThrow(),new GoopThrow(),new GoopThrow(),new GoopThrow());
         }
         return goop_throw;
     }
@@ -51,6 +51,30 @@ public class WeaponFactory
             pitchfork = new Weapon(null,"Pitchfork","",ItemSubType.MELEE_WEAPON,new Pitchfork(),new Pitchfork(),new Pitchfork(),new Pitchfork(),new Pitchfork());
         }
         return pitchfork;
+    }
+
+    private static Weapon fireball = null;
+     public static Weapon getFireball(){
+        if (fireball == null){
+            fireball = new Weapon(null,"Fireball","",ItemSubType.RANGED_WEAPON,new Fireball(),new Fireball(),new Fireball(),new Fireball(),new Fireball());
+        }
+        return fireball;
+    }
+
+    private static Weapon flamesummon = null;
+     public static Weapon getFlameSummon(){
+        if (flamesummon == null){
+            flamesummon = new Weapon(null,"Fireball","",ItemSubType.RANGED_WEAPON,new FlameSummon(),new FlameSummon(),new FlameSummon(),new FlameSummon(),new FlameSummon());
+        }
+        return flamesummon;
+    }
+
+    private static Weapon bat_bite = null;
+     public static Weapon getBatBite(){
+        if (bat_bite == null){
+            bat_bite = new Weapon(null,"Fireball","",ItemSubType.MELEE_WEAPON,new BatBite(),new BatBite(),new BatBite(),new BatBite(),new BatBite());
+        }
+        return bat_bite;
     }
 
 }
@@ -306,6 +330,112 @@ public class Pitchfork : Card
     {
         Attack a = new Attack();
         a.dams.Add(new Damage(15f,DamageType.PIERCE));
+        //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class Fireball : Card
+{
+    public Fireball(){
+        cName = "Fireball toss";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(2,-1));
+        t.tos.Add(new TileOffset(2,1));
+        t.tos.Add(new TileOffset(3,0));
+        t.tos.Add(new TileOffset(3,-1));
+        t.tos.Add(new TileOffset(3,1));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(20f,DamageType.FIRE));
+        target.occupant.damage(a);
+        Handler.logA("The " + user.name + " throws a fireball at " + target.occupant.name + "!",user.sprite);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(20f,DamageType.FIRE));
+        //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class FlameSummon : Card
+{
+    public FlameSummon(){
+        cName = "FlameSummon";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        t.tos.Add(new TileOffset(0,1));
+        t.tos.Add(new TileOffset(0,-1));
+        t.tos.Add(new TileOffset(-1,-1));
+        t.tos.Add(new TileOffset(-1,1));
+        t.tos.Add(new TileOffset(-1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(5f,DamageType.FIRE));
+        
+        Being tar = Handler.h.getRandomPlayer();
+        tar.damage(a);
+        Handler.logA("The " + user.name + " summons flames under " + tar.name + "'s feet!",user.sprite);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        return 5f;
+    }
+}
+
+public class BatBite : Card
+{
+    public BatBite(){
+        cName = "Bite";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(3f,DamageType.REND));
+        target.occupant.damage(a);
+        Handler.logA("The " + user.name + " bites " + target.occupant.name + "!",user.sprite);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(3f,DamageType.REND));
         //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
         return target.occupant.getDamageAmount(a);
     }

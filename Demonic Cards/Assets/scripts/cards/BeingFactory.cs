@@ -47,11 +47,56 @@ public class BeingFactory
         b.moveCard = new PitchforkMoveCard();
         b.aWeap = WeaponFactory.getPitchfork();
         b.bWeap = WeaponFactory.getPitchfork();
-        b.baseRMap.addResist(DamageType.FIRE,.3f);
+        b.baseRMap.addResist(DamageType.FIRE,.1f);
+        b.baseRMap.addResist(DamageType.HOLY,-.25f);
         b.setSprite(Resources.Load<Sprite>("sprites/evil-fork"));
         b.maxHp = 15f;
         b.setHp(b.maxHp);
         b.name = "Demonic Pitchfork";
+        return b;
+    }
+
+    public static Being generateImp( Tile t){
+        Being b = new Being(Side.DEMONS);
+        Room.moveTo(b,t);
+        b.moveCard = new PitchforkMoveCard();
+        b.aWeap = WeaponFactory.getPitchfork();
+        b.bWeap = WeaponFactory.getFireball();
+        b.baseRMap.addResist(DamageType.FIRE,.45f);
+        b.baseRMap.addResist(DamageType.HOLY,-.45f);
+        b.setSprite(Resources.Load<Sprite>("sprites/imp"));
+        b.maxHp = 25f;
+        b.setHp(b.maxHp);
+        b.name = "Imp";
+        return b;
+    }
+
+    public static Being generateFlameDemon( Tile t){
+        Being b = new Being(Side.DEMONS);
+        Room.moveTo(b,t);
+        b.moveCard = new NoMoveCard();
+        b.aWeap = WeaponFactory.getFlameSummon();
+        b.bWeap = WeaponFactory.getFireball();
+        b.baseRMap.addResist(DamageType.FIRE,.70f);
+        b.baseRMap.addResist(DamageType.HOLY,-.45f);
+        b.setSprite(Resources.Load<Sprite>("sprites/ifrit"));
+        b.maxHp = 35f;
+        b.setHp(b.maxHp);
+        b.name = "Imp";
+        return b;
+    }
+
+    public static Being generateBat( Tile t){
+        Being b = new Being(Side.DEMONS);
+        Room.moveTo(b,t);
+        b.moveCard = new ShamblerMoveCard();
+        b.aWeap = WeaponFactory.getBatBite();
+        b.bWeap = WeaponFactory.getBatBite();
+        b.setSprite(Resources.Load<Sprite>("sprites/evil-bat"));
+        b.maxHp = 10f;
+        b.setHp(b.maxHp);
+        b.name = "Bat";
+        b.setSpeed(3);
         return b;
     }
 
@@ -111,6 +156,32 @@ public class ShamblerMoveCard : Card
        if (Core.clearRay(user,user.getTile(),target,this.getTileSet() ,true)){
            Room.moveTo(user,target);
        }
+    }
+}
+
+public class NoMoveCard : Card
+{
+     public NoMoveCard(){
+         cName = "sits";
+         tarhint = TargetHint.BLANK;
+     }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        return .1f;
+    }
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        return t;
+    }
+
+    public override void use(Being user, Tile target)
+    {
     }
 }
 

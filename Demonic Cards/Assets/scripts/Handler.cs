@@ -83,8 +83,24 @@ public class Handler : MonoBehaviour
         case 1: 
         beingList.Add(BeingFactory.generatePitchfork(r.getTile(8,4)));
         beingList.Add(BeingFactory.generatePitchfork(r.getTile(8,5)));
-        beingList.Add(BeingFactory.generateShambler(r.getTile(8,3)));
-        beingList.Add(BeingFactory.generateGoo(r.getTile(8,7)));
+        beingList.Add(BeingFactory.generateImp(r.getTile(8,3)));
+        beingList.Add(BeingFactory.generateImp(r.getTile(8,7)));
+        break;
+        case 2: 
+        beingList.Add(BeingFactory.generateImp(r.getTile(8,4)));
+        beingList.Add(BeingFactory.generateImp(r.getTile(8,5)));
+        beingList.Add(BeingFactory.generateFlameDemon(r.getTile(8,3)));
+        beingList.Add(BeingFactory.generateFlameDemon(r.getTile(8,7)));
+        break;
+        case 3: 
+        beingList.Add(BeingFactory.generateBat(r.getTile(6,4)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(6,5)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(6,3)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(6,7)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(8,4)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(8,5)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(8,3)));
+        beingList.Add(BeingFactory.generateBat(r.getTile(8,7)));
         break;
         }
     }
@@ -170,6 +186,16 @@ public class Handler : MonoBehaviour
     public static int randRange(int i, int j) {
 		return (int)(UnityEngine.Random.Range(i,j+1));
 	}
+
+    public Being getRandomPlayer(){
+        List<Being> pList = new List<Being>();
+        foreach(Being b in beingList){
+            if (b.getSide().Equals(Side.PLAYER)){
+                pList.Add(b);
+            }
+        }
+        return pList[Handler.randRange(0,pList.Count)];
+    }
 }
 
 public class BeingComparator : Comparer<Being>{
