@@ -106,6 +106,7 @@ public class select_brain : MonoBehaviour
             {
                 TMP_Dropdown.OptionData d = new TMP_Dropdown.OptionData();
                 d.text = s;
+                d.image = WeaponFactory.getWeaponByName(s).getImage();
                 list.Add(d);
                 
             }

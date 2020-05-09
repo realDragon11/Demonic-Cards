@@ -20,6 +20,7 @@ public class BeingFactory
         b.aWeap = WeaponFactory.getShamblerClaws();
         b.baseRMap.addResist(DamageType.FIRE,-.2f);
         b.baseRMap.addResist(DamageType.SLASH,-.1f);
+        b.setSprite(Resources.Load<Sprite>("sprites/shambling-zombie"));
         return b;
     }
 

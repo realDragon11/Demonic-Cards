@@ -22,6 +22,9 @@ public class Item
     public string getDesc(){
         return desc;
     }
+    public Sprite getImage(){
+        return sprite;
+    }
 }
 
 

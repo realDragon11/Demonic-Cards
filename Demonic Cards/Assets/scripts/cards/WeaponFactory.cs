@@ -16,7 +16,7 @@ public class WeaponFactory
 
     public static Weapon getCombatKnife(){
         if (combat_knife == null){
-            combat_knife = new Weapon(null,"Combat Knife","A balanced starting weapon that deals slashing and piercing.",ItemSubType.MELEE_WEAPON,new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeSlice(),new CombatKnifeSlice(),new CombatKnifeStab());
+            combat_knife = new Weapon(Resources.Load<Sprite>("sprites/trench-knife"),"Combat Knife","A balanced starting weapon that deals slashing and piercing.",ItemSubType.MELEE_WEAPON,new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeSlice(),new CombatKnifeSlice(),new CombatKnifeStab());
         }
         return combat_knife;
     }
