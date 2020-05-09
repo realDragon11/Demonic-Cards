@@ -68,7 +68,7 @@ public class AIAction{
         }
         catch (System.Exception)
         {
-            fitness = -1f;
+            fitness = -1.2f;
         }
         
     }

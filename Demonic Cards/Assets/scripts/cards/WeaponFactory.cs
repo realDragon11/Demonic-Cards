@@ -160,6 +160,7 @@ public class ShamblerSwing : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(3f,DamageType.BLUNT));
         a.dams.Add(new Damage(3f,DamageType.SLASH));
+        //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
         return target.occupant.getDamageAmount(a);
     }
 }

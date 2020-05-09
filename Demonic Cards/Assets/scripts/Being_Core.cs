@@ -97,22 +97,31 @@ public class Being : canCollide
         {
             total+=d.dam*this.damMultMap.getResistMult(d.dt);
         }
+        Debug.Log("Finished damage");
         return total;
     }
 
     public void refreshDamageMultMap(){
+        //Debug.Log("Refreshing damage mult map");
         List<ResistMap> list = new List<ResistMap>();
         foreach (Buff b in buffs)//is there really no addAll?
         {
             list.Add(b.rMap);
         }
+       // Debug.Log("head");
         list.Add(head_a.resist);
+        //Debug.Log("arm");
         list.Add(arm_a.resist);
+        //Debug.Log("chest");
         list.Add(chest_a.resist);
+        //Debug.Log("leg");
         list.Add(leg_a.resist);
+        //Debug.Log("feet");
         list.Add(feet_a.resist);
+        //Debug.Log("base");
         list.Add(baseRMap);
         damMultMap = ResistMap.consolidate(list);
+        Debug.Log("Refreshed dammultmap");
     }
 
     public void selectCard(int value)
@@ -305,6 +314,8 @@ public class ResistMap
     public static DamageMultMap consolidate(List<ResistMap> list){
         DamageMultMap r = new DamageMultMap();
         List<DamageType> typeList = new List<DamageType>();
+        //Debug.Log("Started consilidating");
+        try{
         foreach (ResistMap rMap in list)
         {
             foreach (DamageType key in rMap.getKeys())
@@ -315,7 +326,10 @@ public class ResistMap
                 }
             }
         }
-
+        }catch(Exception e){
+            Debug.Log(e.ToString() +  e.StackTrace);
+        }
+        //Debug.Log("Step 2");
         foreach (DamageType dt in typeList){
             r.complete(dt);
         }
@@ -334,6 +348,7 @@ public class DamageMultMap
             resists.TryGetValue(dt,out rVal);
         }
         rVal-=resistValue;
+        resists.Remove(dt);
         resists.Add(dt,rVal);
     }
 
@@ -347,6 +362,7 @@ public class DamageMultMap
             rVal = 0;
         }
         resists.Add(dt,rVal);
+        Debug.Log("Complete");
     }
 
     /*
