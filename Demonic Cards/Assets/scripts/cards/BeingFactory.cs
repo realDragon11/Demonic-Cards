@@ -23,6 +23,7 @@ public class BeingFactory
         b.setSprite(Resources.Load<Sprite>("sprites/shambling-zombie"));
         b.maxHp = 30f;
         b.setHp(b.maxHp);
+        b.name = "Shambler";
         return b;
     }//
     public static Being generateGoo( Tile t){
@@ -36,6 +37,7 @@ public class BeingFactory
         b.setSprite(Resources.Load<Sprite>("sprites/gooey-daemon"));
         b.maxHp = 20f;
         b.setHp(b.maxHp);
+        b.name = "Goo Demon";
         return b;
     }
 
@@ -52,6 +54,12 @@ public class BeingFactory
         b.leg_a = ArmorFactory.getArmorByName(PlayerPrefs.GetString(num+"_l"));
         b.feet_a = ArmorFactory.getArmorByName(PlayerPrefs.GetString(num+"_f"));
         b.setSprite(Resources.Load<Sprite>("sprites/space-suit"));
+        switch (num){
+            case 1: b.name = "Adam";break;
+            case 2: b.name = "Britanny";break;
+            case 3: b.name = "Chris";break;
+            case 4: b.name = "Dylan";break;
+        }
         return b;
     }
 }
@@ -60,7 +68,7 @@ public class BeingFactory
 public class ShamblerMoveCard : Card
 {
      public ShamblerMoveCard(){
-         cName = "shambler move";
+         cName = "shambles";
          tarhint = TargetHint.BLANK;
      }
 

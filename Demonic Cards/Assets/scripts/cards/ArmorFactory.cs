@@ -54,7 +54,7 @@ public class ArmorFactory
     private static Armor burster_core;
     public static Armor getBursterCore(){
         if (burster_core == null){
-            burster_core = new Armor(Resources.Load<Sprite>("sprites/laser-warning-icon"),"Burster Core","OMG LAZORS.",ItemSubType.HEAD_ARMOR,new ResistMap(),new BusterCoreBurst(),new BusterCoreBurst());
+            burster_core = new Armor(Resources.Load<Sprite>("sprites/laser-warning"),"Burster Core","OMG LAZORS.",ItemSubType.HEAD_ARMOR,new ResistMap(),new BusterCoreBurst(),new BusterCoreBurst());
             burster_core.resist.addResist(DamageType.FIRE,.15f);
             burster_core.resist.addResist(DamageType.ICE,.1f);
             burster_core.resist.addResist(DamageType.ELEC,-.1f);

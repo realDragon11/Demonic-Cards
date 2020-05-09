@@ -8,7 +8,30 @@ using UnityEngine.SceneManagement;
 
 public class Handler : MonoBehaviour
 {
+
+    public static void logA(String s,Sprite i){
+        h.log.Insert(0,s);
+        h.logImage.Insert(0,i);
+    }
+
+    public static void loadLog(){
+        h.logDrop.ClearOptions();
+        List<TMP_Dropdown.OptionData> list = new List<TMP_Dropdown.OptionData>();
+        for (int i = 0;i < h.log.Count;i++)
+        {
+            TMP_Dropdown.OptionData data =  new TMP_Dropdown.OptionData();
+            //data.image = c.image;
+            data.text = h.log[i];
+            data.image = h.logImage[i];
+            list.Add(data);
+        }
+        h.logDrop.AddOptions(list);
+    }
+
+    public TMP_Dropdown logDrop;
     public static List<Being> beingList = new List<Being>();
+    public List<String> log = new List<String>();
+    public List<Sprite> logImage = new List<Sprite>();
     public static Handler h;
     public GameObject ct;
     public GameObject athing;
@@ -152,3 +175,5 @@ public class BeingComparator : Comparer<Being>{
         return -1;
     }
 }
+
+

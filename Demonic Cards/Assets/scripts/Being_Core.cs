@@ -31,6 +31,7 @@ public class Being : canCollide
     public Card moveCard = new StandardMoveCard();
 
     public List<Card> cards = new List<Card>();
+    public String name;
 
     public Being(Side s){
         side = s;
