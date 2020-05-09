@@ -129,6 +129,7 @@ public class Handler : MonoBehaviour
 
     public static void clickTile(Tile t){
         if (Being.turnWho.getSide() == Side.PLAYER){
+            loadLog();
             Being.turnWho.attemptToUseCard(Being.turnWho.curCard,t);
         }
     }
@@ -140,6 +141,7 @@ public class Handler : MonoBehaviour
     }
 
     public void displayCards(List<Card> cars){
+        loadLog();
         cardSelector.ClearOptions();
         List<TMP_Dropdown.OptionData> list = new List<TMP_Dropdown.OptionData>();
         foreach (Card c in cars)

@@ -32,6 +32,7 @@ public class Being : canCollide
 
     public List<Card> cards = new List<Card>();
     public String name;
+    public Sprite sprite;
 
     public Being(Side s){
         side = s;
@@ -44,6 +45,7 @@ public class Being : canCollide
 
     public void setSprite(Sprite s){
         linkedThing.setSprite(s);
+        this.sprite = s;
     }
 
     public Side getSide(){

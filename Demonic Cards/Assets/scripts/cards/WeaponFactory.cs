@@ -169,6 +169,7 @@ public class ShamblerSwing : Card
         a.dams.Add(new Damage(5f,DamageType.BLUNT));
         a.dams.Add(new Damage(5f,DamageType.SLASH));
         target.occupant.damage(a);
+        Handler.logA("The " + user.name + " swipes at " + target.occupant.name + "!",user.sprite);
     }
 
     public override float getFitness(Being user, Tile target)
@@ -209,6 +210,7 @@ public class GoopThrow : Card
         a.dams.Add(new Damage(1f,DamageType.BLUNT));
         a.dams.Add(new Damage(14f,DamageType.ACID));
         target.occupant.damage(a);
+        Handler.logA("The " + user.name + " throws goo at " + target.occupant.name + "!",user.sprite);
     }
 
     public override float getFitness(Being user, Tile target)
@@ -248,6 +250,7 @@ public class GoopBash : Card
         a.dams.Add(new Damage(5f,DamageType.BLUNT));
         a.dams.Add(new Damage(5f,DamageType.ACID));
         target.occupant.damage(a);
+        Handler.logA("The " + user.name + " bashes into " + target.occupant.name + "!",user.sprite);
     }
 
     public override float getFitness(Being user, Tile target)
