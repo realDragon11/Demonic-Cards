@@ -26,6 +26,8 @@ public class ArmorFactory
             return getBasicGreaves();
             case "Combat Grip":
             return getCombatGrip();
+            case "Hazmat Suit":
+            return getHazmat();
         }
         throw new GenericRuntimeException("Armor not found!");
     }
@@ -90,11 +92,24 @@ public class ArmorFactory
     public static Armor getCombatGrip(){
         if (combat_grip == null){
             combat_grip = new Armor(Resources.Load<Sprite>("sprites/arm"),"Combat Grip","Keeps your arms on.",ItemSubType.ARM_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
-            combat_grip.resist.addResist(DamageType.BLUNT,.7f);
-            combat_grip.resist.addResist(DamageType.PIERCE,.7f);
-            combat_grip.resist.addResist(DamageType.SLASH,.7f);
+            combat_grip.resist.addResist(DamageType.BLUNT,.1f);
+            combat_grip.resist.addResist(DamageType.PIERCE,.1f);
+            combat_grip.resist.addResist(DamageType.SLASH,.1f);
         }
         return combat_grip;
+    }
+    private static Armor hazmat;
+    public static Armor getHazmat(){
+        if (hazmat == null){
+            hazmat = new Armor(Resources.Load<Sprite>("sprites/hazmat-suit"),"Hazmat Suit","Keeps your skin on.",ItemSubType.BODY_ARMOR,new ResistMap(),new HunkerDown(),new HunkerDown());
+            hazmat.resist.addResist(DamageType.ACID,.5f);
+            hazmat.resist.addResist(DamageType.FIRE,.5f);
+            hazmat.resist.addResist(DamageType.ICE,.5f);
+            hazmat.resist.addResist(DamageType.ELEC,.5f);
+            hazmat.resist.addResist(DamageType.PIERCE,-.3f);
+            hazmat.resist.addResist(DamageType.SLASH,-.3f);
+        }
+        return hazmat;
     }
 }
 
