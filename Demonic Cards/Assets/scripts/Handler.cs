@@ -26,6 +26,10 @@ public class Handler : MonoBehaviour
         return beingList[0];
     }
 
+    public void kill(Being b){
+        beingList.Remove(b);
+    }
+
     public void nextTurn(){
         Being.turnWho = sortBeingList();
         Being.turnWho.setTurn();

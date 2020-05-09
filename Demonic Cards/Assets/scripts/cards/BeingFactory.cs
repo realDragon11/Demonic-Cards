@@ -21,6 +21,8 @@ public class BeingFactory
         b.baseRMap.addResist(DamageType.FIRE,-.2f);
         b.baseRMap.addResist(DamageType.SLASH,-.1f);
         b.setSprite(Resources.Load<Sprite>("sprites/shambling-zombie"));
+        b.maxHp = 30f;
+        b.setHp(b.maxHp);
         return b;
     }
 
