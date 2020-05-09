@@ -180,6 +180,7 @@ public class Handler : MonoBehaviour
             list.Add(data);
         }
         cardSelector.AddOptions(list);
+        selectCard();
     }
 
     public void selectCard(){
