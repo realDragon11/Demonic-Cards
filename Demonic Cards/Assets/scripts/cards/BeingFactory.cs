@@ -32,6 +32,7 @@ public class BeingFactory
         b.bWeap = WeaponFactory.getWeaponByName(PlayerPrefs.GetString(num+"_w2"));
         b.head_a = ArmorFactory.getArmorByName(PlayerPrefs.GetString(num+"_h"));
         b.chest_a = ArmorFactory.getArmorByName(PlayerPrefs.GetString(num+"_c"));
+        b.setSprite(Resources.Load<Sprite>("sprites/space-suit"));
         return b;
     }
 }

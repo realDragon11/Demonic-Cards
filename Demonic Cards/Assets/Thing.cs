@@ -8,6 +8,7 @@ public class Thing : MonoBehaviour, canCollide
     private Tile tile;
     public CollidableType subType;
     public TMPro.TMP_Text text;
+    public GameObject subSprite;
     public Thing(canCollide s, Tile t,CollidableType ty){
         sub = s;
         setTile(t);
@@ -37,6 +38,7 @@ public class Thing : MonoBehaviour, canCollide
         text.text = "HP: " +  (int)b.getHp() + "/" + b.maxHp; 
     }
     public void setSprite(Sprite s){
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = s;
+        subSprite.GetComponent<SpriteRenderer>().sprite = s;
+        //Debug.Log("Sprite set.");
     }
 }
