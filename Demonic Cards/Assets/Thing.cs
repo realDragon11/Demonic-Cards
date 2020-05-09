@@ -36,4 +36,7 @@ public class Thing : MonoBehaviour, canCollide
     public void updateBeing(Being b){
         text.text = "HP: " +  (int)b.getHp() + "/" + b.maxHp; 
     }
+    public void setSprite(Sprite s){
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = s;
+    }
 }

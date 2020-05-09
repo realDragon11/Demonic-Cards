@@ -38,6 +38,8 @@ public class Being : canCollide
         if (!GameObject.Instantiate(Handler.h.athing).TryGetComponent<Thing>(out linkedThing)){
             throw new GenericRuntimeException("Oh no!");
         }
+        if (s.Equals(Side.PLAYER)){
+        linkedThing.setSprite(Resources. Load("sprites/space-suit") as Sprite);}
     }
 
     public Side getSide(){
