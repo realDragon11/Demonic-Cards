@@ -19,6 +19,7 @@ public class select_brain : MonoBehaviour
         weapons.Add("Combat Knife");
         weapons.Add("Combat Knife");
         weapons.Add("Combat Knife");
+        weapons.Add("Harpoon");
         headGear.Add("Mining Helmet");
         headGear.Add("Mining Helmet");
         headGear.Add("Brain Bucket");
@@ -71,7 +72,7 @@ public class select_brain : MonoBehaviour
         if (personId > 0){
             //save fields
             PlayerPrefs.SetString(personId+"_w1",wSel1);
-            PlayerPrefs.SetString(personId+"_w2",wSel1);
+            PlayerPrefs.SetString(personId+"_w2",wSel2);
             PlayerPrefs.SetString(personId+"_h",hSel);
             PlayerPrefs.SetString(personId+"_c",cSel);
             PlayerPrefs.SetString(personId+"_a",aSel);

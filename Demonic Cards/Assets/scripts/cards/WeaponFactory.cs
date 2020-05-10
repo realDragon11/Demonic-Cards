@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class WeaponFactory
 {
-    private static Weapon combat_knife = null;
 
     public static Weapon getWeaponByName(string str){
         switch (str){
             case "Combat Knife":
             return getCombatKnife();
+            case "Harpoon":
+            return getHarpoon();
         }
         throw new GenericRuntimeException("Weapon not found!");
     }
 
+    private static Weapon combat_knife = null;
+
     public static Weapon getCombatKnife(){
         if (combat_knife == null){
-            combat_knife = new Weapon(Resources.Load<Sprite>("sprites/trench-knife"),"Combat Knife","A balanced starting weapon that deals slashing and piercing.",ItemSubType.MELEE_WEAPON,new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeSlice(),new CombatKnifeSlice(),new CombatKnifeStab());
+            combat_knife = new Weapon(Resources.Load<Sprite>("sprites/trench-knife"),"Combat Knife","A balanced starting weapon that deals slashing and piercing.",ItemSubType.MELEE_WEAPON,new CombatKnifeStab(),new CombatKnifeStab(),new CombatKnifeSlice(),new CombatKnifeSlice(),new CombatKnifeBackStab());
         }
         return combat_knife;
+    }
+
+    private static Weapon harpoon = null;
+
+    public static Weapon getHarpoon(){
+        if (harpoon == null){
+            harpoon = new Weapon(Resources.Load<Sprite>("sprites/harpoon-chain"),"Harpoon","For getting the enemies closer.",ItemSubType.RANGED_WEAPON,new HarpoonShoot(),new HarpoonShoot(),new HarpoonShoot(),new HarpoonShoot(),new CombatKnifeStab());
+        }
+        return harpoon;
     }
 
     private static Weapon shambler_claws = null;
@@ -437,6 +449,49 @@ public class BatBite : Card
         Attack a = new Attack();
         a.dams.Add(new Damage(3f,DamageType.REND));
         //Debug.Log("Shambled! - " + target.occupant.getDamageAmount(a));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class HarpoonShoot : Card
+{
+    public HarpoonShoot(){
+        cName = "Shoot the Harpoon";
+        tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/harpoon-chain");
+    }
+
+    
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(3,0));
+        t.tos.Add(new TileOffset(4,0));
+        t.tos.Add(new TileOffset(5,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(10f,DamageType.PIERCE));
+        target.occupant.damage(a);
+        Handler.logA(user.name + " harpoons the " + target.occupant.name + "!",this.image);
+        Being person = target.occupant;
+        Tile t = Handler.h.r.getTileRelative(target,new TileOffset(user.getSide().Equals(Side.PLAYER) ? -1: 1,0));
+        if (t.occupant == null){
+        Room.moveTo(person,t);}
+    }
+    public override float getFitness(Being user, Tile target)
+    {
+        if (user.getSide() == target.occupant.getSide()){
+            return -1f;
+        }
+        Attack a = new Attack();
+        a.dams.Add(new Damage(10f,DamageType.PIERCE));
         return target.occupant.getDamageAmount(a);
     }
 }
