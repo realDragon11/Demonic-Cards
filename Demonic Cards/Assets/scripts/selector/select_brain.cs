@@ -33,6 +33,7 @@ public class select_brain : MonoBehaviour
         chestGear.Add("Burster Core");
         chestGear.Add("Burster Core");
         chestGear.Add("Hazmat Suit");
+        chestGear.Add("Hazmat Suit");
         legGear.Add("Basic Greaves");
         legGear.Add("Basic Greaves");
         legGear.Add("Basic Greaves");
