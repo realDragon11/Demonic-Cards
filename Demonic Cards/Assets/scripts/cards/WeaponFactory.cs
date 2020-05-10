@@ -11,6 +11,10 @@ public class WeaponFactory
             return getCombatKnife();
             case "Harpoon":
             return getHarpoon();
+            case "Raygun":
+            return getRaygun();
+            case "Pistol":
+            return getPistol();
         }
         throw new GenericRuntimeException("Weapon not found!");
     }
@@ -31,6 +35,24 @@ public class WeaponFactory
             harpoon = new Weapon(Resources.Load<Sprite>("sprites/harpoon-chain"),"Harpoon","For getting the enemies closer.",ItemSubType.RANGED_WEAPON,new HarpoonShoot(),new HarpoonShoot(),new HarpoonShoot(),new HarpoonShoot(),new CombatKnifeStab());
         }
         return harpoon;
+    }
+
+    private static Weapon raygun = null;
+
+    public static Weapon getRaygun(){
+        if (raygun == null){
+            raygun = new Weapon(Resources.Load<Sprite>("sprites/ray-gun"),"Raygun","Pew-Pew.",ItemSubType.RANGED_WEAPON,new RaygunShoot(),new RaygunShoot(),new RaygunShoot(),new RaygunShoot(),new RaygunShoot());
+        }
+        return raygun;
+    }
+
+    private static Weapon pistol = null;
+
+    public static Weapon getPistol(){
+        if (pistol == null){
+            pistol = new Weapon(Resources.Load<Sprite>("sprites/pistol-gun"),"Raygun","Bang-bang.",ItemSubType.RANGED_WEAPON,new PistolShoot(),new PistolShoot(),new PistolShoot(),new PistolShoot(),new PistolShoot());
+        }
+        return pistol;
     }
 
     private static Weapon shambler_claws = null;
@@ -492,6 +514,90 @@ public class HarpoonShoot : Card
         }
         Attack a = new Attack();
         a.dams.Add(new Damage(10f,DamageType.PIERCE));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class RaygunShoot : Card
+{
+    public RaygunShoot(){
+        cName = "Ray";
+        tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/laser-blast");
+    }
+
+    
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(3,0));
+        t.tos.Add(new TileOffset(4,0));
+        t.tos.Add(new TileOffset(5,0));
+        t.tos.Add(new TileOffset(6,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(10f,DamageType.FIRE));
+        a.dams.Add(new Damage(2f,DamageType.ELEC));
+        target.occupant.damage(a);
+        Handler.logA(user.name + " lasers the " + target.occupant.name + "!",this.image);
+    }
+    public override float getFitness(Being user, Tile target)
+    {
+        if (user.getSide() == target.occupant.getSide()){
+            return -1f;
+        }
+        Attack a = new Attack();
+         a.dams.Add(new Damage(10f,DamageType.FIRE));
+        a.dams.Add(new Damage(2f,DamageType.ELEC));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class PistolShoot : Card
+{
+    public PistolShoot(){
+        cName = "Shoot Pistol";
+        tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/supersonic-bullet");
+    }
+
+    
+
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(2,0));
+        t.tos.Add(new TileOffset(3,0));
+        t.tos.Add(new TileOffset(4,0));
+        t.tos.Add(new TileOffset(5,0));
+        t.tos.Add(new TileOffset(6,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(12f,DamageType.PIERCE));
+        target.occupant.damage(a);
+        Handler.logA(user.name + " lasers the " + target.occupant.name + "!",this.image);
+    }
+    public override float getFitness(Being user, Tile target)
+    {
+        if (user.getSide() == target.occupant.getSide()){
+            return -1f;
+        }
+        Attack a = new Attack();
+        a.dams.Add(new Damage(12f,DamageType.PIERCE));
         return target.occupant.getDamageAmount(a);
     }
 }
