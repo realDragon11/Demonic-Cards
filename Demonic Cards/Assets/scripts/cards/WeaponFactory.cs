@@ -375,7 +375,7 @@ public class FlameSummon : Card
 {
     public FlameSummon(){
         cName = "FlameSummon";
-        tarhint = TargetHint.ENEMY;
+        tarhint = TargetHint.BLANK;
     }
     public override TileSet getTileSet()
     {

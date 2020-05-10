@@ -82,7 +82,7 @@ public class BeingFactory
         b.setSprite(Resources.Load<Sprite>("sprites/ifrit"));
         b.maxHp = 35f;
         b.setHp(b.maxHp);
-        b.name = "Imp";
+        b.name = "Flame Demon";
         return b;
     }
 
@@ -97,6 +97,7 @@ public class BeingFactory
         b.setHp(b.maxHp);
         b.name = "Bat";
         b.setSpeed(3);
+        b.setAgilityMult(1.2f);
         return b;
     }
 

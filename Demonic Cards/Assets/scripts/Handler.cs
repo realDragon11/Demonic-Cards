@@ -200,7 +200,7 @@ public class Handler : MonoBehaviour
                 pList.Add(b);
             }
         }
-        return pList[Handler.randRange(0,pList.Count)];
+        return pList[Handler.randRange(0,pList.Count-1)];
     }
 }
 
