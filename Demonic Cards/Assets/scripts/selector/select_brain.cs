@@ -12,6 +12,7 @@ public class select_brain : MonoBehaviour
     private List<string> weapons = new List<string>(),headGear = new List<string>(),chestGear = new List<string>()
     ,armGear = new List<string>(),legGear = new List<string>(),feetGear = new List<string>();
     // Start is called before the first frame update
+    public TMP_Text namer;
     void Start()
     {
         PlayerPrefs.SetInt("curLevel",0);
@@ -92,6 +93,13 @@ public class select_brain : MonoBehaviour
             armGear.Remove(aSel);
             legGear.Remove(lSel);
             feetGear.Remove(fSel);
+        }
+        switch (personId)
+        {
+            case 0: namer.text = "Adam";break;
+            case 1: namer.text = "Britteny";break;
+            case 2: namer.text = "Chris";break;
+            case 3: namer.text = "Dylan";break;
         }
         if (personId == 4){
             SceneManager.LoadSceneAsync("SampleScene");
