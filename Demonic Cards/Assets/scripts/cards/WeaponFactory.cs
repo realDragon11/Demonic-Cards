@@ -15,6 +15,8 @@ public class WeaponFactory
             return getRaygun();
             case "Pistol":
             return getPistol();
+            case "Brass Knuckles":
+            return getBrass();
         }
         throw new GenericRuntimeException("Weapon not found!");
     }
@@ -53,6 +55,14 @@ public class WeaponFactory
             pistol = new Weapon(Resources.Load<Sprite>("sprites/pistol-gun"),"Raygun","Bang-bang.",ItemSubType.RANGED_WEAPON,new PistolShoot(),new PistolShoot(),new PistolShoot(),new PistolShoot(),new PistolShoot());
         }
         return pistol;
+    }
+    private static Weapon brass_knuckles = null;
+
+    public static Weapon getBrass(){
+        if (brass_knuckles == null){
+            brass_knuckles = new Weapon(Resources.Load<Sprite>("sprites/brass-knuckles"),"Combat Knife","Ponch.",ItemSubType.MELEE_WEAPON,new BrassSwing(),new BrassSwing(),new BrassSwing(),new BrassSwing(),new BrassSwing());
+        }
+        return brass_knuckles;
     }
 
     private static Weapon shambler_claws = null;
@@ -109,6 +119,15 @@ public class WeaponFactory
             bat_bite = new Weapon(null,"Fireball","",ItemSubType.MELEE_WEAPON,new BatBite(),new BatBite(),new BatBite(),new BatBite(),new BatBite());
         }
         return bat_bite;
+    }
+
+     private static Weapon mound = null;
+
+    public static Weapon getMound(){
+        if (mound == null){
+            mound = new Weapon(null,"Mound","Plant smash!.",ItemSubType.MELEE_WEAPON,new MoundPound(),new MoundPound(),new MoundPound(),new MoundPound(),new MoundPound());
+        }
+        return mound;
     }
 
 }
@@ -598,6 +617,74 @@ public class PistolShoot : Card
         }
         Attack a = new Attack();
         a.dams.Add(new Damage(12f,DamageType.PIERCE));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class BrassSwing : Card
+{
+    public BrassSwing(){
+        cName = "Swing";
+        tarhint = TargetHint.ENEMY;
+        image = Resources.Load<Sprite>("sprites/brass-knuckles");
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        t.tos.Add(new TileOffset(1,-1));
+        t.tos.Add(new TileOffset(1,1));
+        t.tos.Add(new TileOffset(0,1));
+        t.tos.Add(new TileOffset(0,-1));
+        t.tos.Add(new TileOffset(-1,-1));
+        t.tos.Add(new TileOffset(-1,1));
+        t.tos.Add(new TileOffset(-1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(10f,DamageType.BLUNT));
+        target.occupant.damage(a);
+        Handler.logA(user.name + " punches the " + target.occupant.name + "!",user.sprite);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(10f,DamageType.BLUNT));
+        return target.occupant.getDamageAmount(a);
+    }
+}
+
+public class MoundPound : Card
+{
+    public MoundPound(){
+        cName = "Mound Pound";
+        tarhint = TargetHint.ENEMY;
+    }
+    public override TileSet getTileSet()
+    {
+        TileSet t = new TileSet();
+        t.tos.Add(new TileOffset(1,0));
+        return t;
+    }
+
+
+    public override void use(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(15f,DamageType.BLUNT));
+        target.occupant.damage(a);
+        Handler.logA("The " + user.name + " pounds " + target.occupant.name + "!",user.sprite);
+    }
+
+    public override float getFitness(Being user, Tile target)
+    {
+        Attack a = new Attack();
+        a.dams.Add(new Damage(15f,DamageType.BLUNT));
         return target.occupant.getDamageAmount(a);
     }
 }

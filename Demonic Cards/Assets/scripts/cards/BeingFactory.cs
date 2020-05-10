@@ -25,7 +25,7 @@ public class BeingFactory
         b.setHp(b.maxHp);
         b.name = "Shambler";
         return b;
-    }//
+    }
     public static Being generateGoo( Tile t){
         Being b = new Being(Side.DEMONS);
         Room.moveTo(b,t);
@@ -98,6 +98,21 @@ public class BeingFactory
         b.name = "Bat";
         b.setSpeed(3);
         b.setAgilityMult(1.2f);
+        return b;
+    }
+
+    public static Being generarteMound( Tile t){
+        Being b = new Being(Side.DEMONS);
+        Room.moveTo(b,t);
+        b.moveCard = new ShamblerMoveCard();
+        b.aWeap = WeaponFactory.getMound();
+        b.bWeap = WeaponFactory.getShamblerClaws();
+        b.baseRMap.addResist(DamageType.FIRE,-.6f);
+        b.baseRMap.addResist(DamageType.SLASH,-.1f);
+        b.setSprite(Resources.Load<Sprite>("sprites/shambling-mound"));
+        b.maxHp = 60f;
+        b.setHp(b.maxHp);
+        b.name = "Shambling Mound";
         return b;
     }
 

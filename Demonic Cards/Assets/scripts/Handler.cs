@@ -103,6 +103,12 @@ public class Handler : MonoBehaviour
         beingList.Add(BeingFactory.generateBat(r.getTile(8,3)));
         beingList.Add(BeingFactory.generateBat(r.getTile(8,7)));
         break;
+        case 4: 
+        beingList.Add(BeingFactory.generateShambler(r.getTile(8,4)));
+        beingList.Add(BeingFactory.generarteMound(r.getTile(8,5)));
+        beingList.Add(BeingFactory.generateShambler(r.getTile(8,3)));
+        beingList.Add(BeingFactory.generarteMound(r.getTile(8,7)));
+        break;
         default: SceneManager.LoadScene(0);break;
         }
     }

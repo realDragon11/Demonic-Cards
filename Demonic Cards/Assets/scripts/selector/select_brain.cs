@@ -24,6 +24,7 @@ public class select_brain : MonoBehaviour
         weapons.Add("Raygun");
         weapons.Add("Pistol");
         weapons.Add("Pistol");
+        weapons.Add("Brass Knuckles");
         headGear.Add("Mining Helmet");
         headGear.Add("Mining Helmet");
         headGear.Add("Brain Bucket");
