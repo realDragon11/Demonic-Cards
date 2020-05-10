@@ -107,10 +107,16 @@ public class Handler : MonoBehaviour
     }
 
     void Start(){//use awake to put things into the beinglist
+
         h = this;
         //while (true){
             sortBeingList().setTurn();
        // }
+       logA("End turn with all foes dead to advance.",Resources.Load<Sprite>("sprites/space-suit"));
+       logA("Click the end turn button to end your turn!",Resources.Load<Sprite>("sprites/space-suit"));
+       logA("Select Actions from the list on the left!",Resources.Load<Sprite>("sprites/space-suit"));
+       logA("Right click on green tiles to do actions!",Resources.Load<Sprite>("sprites/space-suit"));
+       loadLog();
     }
 
     void FixedUpdate(){
